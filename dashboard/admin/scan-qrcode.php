@@ -178,7 +178,7 @@ if(isset($_POST['scan'])){
 	<section id="sidebar">
 		<a href="home" class="brand"><img src="../../src/img/<?php echo $logo ?>" alt="logo" class="brand-img"></i>&nbsp;&nbsp;DHVSU</a>
 		<ul class="side-menu">
-			<li><a href="#"><i class='bx bxs-dashboard icon' ></i> Dashboard</a></li>
+			<li><a href="home"><i class='bx bxs-dashboard icon' ></i> Dashboard</a></li>
 			<li class="divider" data-text="main">Main</li>
 			<li><a href="" class="active"><i class='bx bx-qr-scan icon' ></i> Scan QR-Code</a></li>
 			<li>
