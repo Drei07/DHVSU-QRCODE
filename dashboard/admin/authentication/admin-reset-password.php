@@ -77,7 +77,7 @@ if(isset($_GET['id']) && isset($_GET['code']))
 								</div>
 
 								<div class="form-group m-0">
-									<button type="submit" name="btn-update-password" class="btn btn-primary btn-block">
+									<button type="submit" name="btn-update-password" class="btn btn-danger btn-block">
 										Reset Password
 									</button>
 								</div>

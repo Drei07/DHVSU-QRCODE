@@ -532,8 +532,9 @@ $updated_at                 = $student["updated_at"];
 		const href = $(this).attr('href')
 
 				swal({
+				title: "Delete?",
 				text: "Are you sure do you want to delete?",
-				icon: "info",
+				icon: "warning",
 				buttons: true,
 				dangerMode: true,
 			})
@@ -550,6 +551,7 @@ $updated_at                 = $student["updated_at"];
 		const href = $(this).attr('href')
 
 				swal({
+				title: "Signout?",
 				text: "Are you sure do you want to signout?",
 				icon: "warning",
 				buttons: true,

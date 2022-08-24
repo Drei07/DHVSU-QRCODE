@@ -121,6 +121,7 @@ $updated_at  = $admin_profile["updated_at"];
 		const href = $(this).attr('href')
 
 				swal({
+				title: "Signout?",
 				text: "Are you sure do you want to signout?",
 				icon: "warning",
 				buttons: true,

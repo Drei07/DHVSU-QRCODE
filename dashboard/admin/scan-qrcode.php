@@ -398,6 +398,7 @@ if(isset($_POST['scan'])){
 		const href = $(this).attr('href')
 
 				swal({
+				title: "Signout?",
 				text: "Are you sure do you want to signout?",
 				icon: "warning",
 				buttons: true,

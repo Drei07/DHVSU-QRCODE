@@ -289,8 +289,9 @@ if(!$superadmin_home->is_logged_in())
 		const href = $(this).attr('href')
 
 				swal({
+				title: "Delete?",
 				text: "Do you want to delete?",
-				icon: "info",
+				icon: "warning",
 				buttons: true,
 				dangerMode: true,
 			})
@@ -307,6 +308,7 @@ if(!$superadmin_home->is_logged_in())
 		const href = $(this).attr('href')
 
 				swal({
+				title: "Signout?",
 				text: "Are you sure do you want to signout?",
 				icon: "warning",
 				buttons: true,
