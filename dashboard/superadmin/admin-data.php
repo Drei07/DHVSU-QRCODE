@@ -11,7 +11,9 @@ if(!$superadmin_home->is_logged_in())
  $superadmin_home->redirect('../../public/superadmin/signin');
 }
 
-
+$stmt = $superadmin_home->runQuery("SELECT * FROM superadmin WHERE superadminId=:uid");
+$stmt->execute(array(":uid"=>$_SESSION['superadminSession']));
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
 <!DOCTYPE html>
@@ -30,7 +32,7 @@ if(!$superadmin_home->is_logged_in())
 
 
 	<!-- SIDEBAR -->
-	<section id="sidebar">
+	<section id="sidebar" class="hide">
 		<a href="#" class="brand"><img src="../../src/img/<?php echo $logo ?>" alt="logo" class="brand-img"></i>&nbsp;&nbsp;DHVSU</a>
 		<ul class="side-menu">
 			<li><a href="home"><i class='bx bxs-dashboard icon' ></i> Dashboard</a></li>
@@ -68,26 +70,23 @@ if(!$superadmin_home->is_logged_in())
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu toggle-sidebar' ></i>
-			<div class="form">
-				<div class="form-group">
-					<input type="text" placeholder="Search...">
-					<i class='bx bx-search icon' ></i>
-				</div>
-			</div>
-			<!-- <a href="#" class="nav-link">
+
+			<a href="#" class="nav-link">
 				<i class='bx bxs-bell icon' ></i>
 				<span class="badge">5</span>
 			</a>
 			<a href="#" class="nav-link">
 				<i class='bx bxs-message-square-dots icon' ></i>
 				<span class="badge">8</span>
-			</a> -->
+			</a>
 			<span class="divider"></span>
+			<div class="dropdown">
+				<span><?php echo $row['name']; ?></i></span>
+			</div>	
 			<div class="profile">
-				<img src="../../src/img/<?php echo $profile ?>" alt="user">
+				<img src="../../src/img/<?php echo $profile ?>" alt="">
 				<ul class="profile-link">
 					<li><a href="profile"><i class='bx bxs-user-circle icon' ></i> Profile</a></li>
-					<li><a href="notifications"><i class='bx bxs-bell icon' ></i> Notifications</a></li><span class="badge">5</span>
 					<li><a href="settings"><i class='bx bxs-cog' ></i> Settings</a></li>
 					<li><a href="authentication/superadmin-signout" class="btn-signout"><i class='bx bxs-log-out-circle' ></i> Signout</a></li>
 				</ul>

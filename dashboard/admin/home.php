@@ -43,7 +43,7 @@ $updated_at  = $admin_profile["updated_at"];
 
 
 	<!-- SIDEBAR -->
-	<section id="sidebar">
+	<section id="sidebar" class="hide">
 		<a href="#" class="brand"><img src="../../src/img/<?php echo $logo ?>" alt="logo" class="brand-img"></i>&nbsp;&nbsp;DHVSU</a>
 		<ul class="side-menu">
 			<li><a href="#" class="active"><i class='bx bxs-dashboard icon' ></i> Dashboard</a></li>
@@ -65,28 +65,25 @@ $updated_at  = $admin_profile["updated_at"];
 		<!-- NAVBAR -->
 		<nav>
 			<i class='bx bx-menu toggle-sidebar' ></i>
-			<div class="form">
-				<div class="form-group">
-					<input type="text" placeholder="Search...">
-					<i class='bx bx-search icon' ></i>
-				</div>
-			</div>
-			<!-- <a href="#" class="nav-link">
+
+			<a href="#" class="nav-link">
 				<i class='bx bxs-bell icon' ></i>
 				<span class="badge">5</span>
 			</a>
 			<a href="#" class="nav-link">
 				<i class='bx bxs-message-square-dots icon' ></i>
 				<span class="badge">8</span>
-			</a> -->
+			</a>
 			<span class="divider"></span>
+			<div class="dropdown">
+				<span><?php echo $row['adminLast_Name']; ?>, <?php echo $row['adminFirst_Name']; ?></i></span>
+			</div>	
 			<div class="profile">
 				<img src="../../src/img/<?php echo $profile_admin ?>" alt="">
 				<ul class="profile-link">
 					<li><a href="profile"><i class='bx bxs-user-circle icon' ></i> Profile</a></li>
-					<li><a href="notifications"><i class='bx bxs-bell icon' ></i> Notification</a></li><span class="badge">5</span>
 					<li><a href="settings"><i class='bx bxs-cog' ></i> Settings</a></li>
-					<li><a href="authentication/admin-signout.php" class="btn-signout"><i class='bx bxs-log-out-circle' ></i> Signout</a></li>
+					<li><a href="authentication/user-signout" class="btn-signout"><i class='bx bxs-log-out-circle' ></i> Signout</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -96,60 +93,79 @@ $updated_at  = $admin_profile["updated_at"];
 		<main>
 			<h1 class="title">Dashboard</h1>
 			<ul class="breadcrumbs">
-				<li><a href="#">Home</a></li>
+				<li><a href="home" >Home</a></li>
 				<li class="divider">|</li>
-				<li><a href="#" class="active">Dashboard</a></li>
+                <li><a href="" class="active">Dashboard</a></li>
 			</ul>
-			<!-- <div class="info-data">
-				<div class="card">
+			<div class="dashboard-data">
+				<div class="dashboard-card">
 					<div class="head">
 						<div>
-							<h2>1500</h2>
-							<p>Traffic</p>
+							<?php
+								$pdoQuery = "SELECT * FROM admin";
+								$pdoResult1 = $pdoConnect->prepare($pdoQuery);
+								$pdoResult1->execute();
+
+								$count = $pdoResult1->rowCount();
+
+								echo
+								"
+									<h2>$count</h2>
+								";
+							?>
+							<p>Admin</p>
 						</div>
-						<i class='bx bx-trending-up icon' ></i>
+						<i class='bx bxs-user icon' ></i>
 					</div>
-					<span class="progress" data-value="40%"></span>
-					<span class="label">40%</span>
+					<span class="progress" data-value="40%"></span>				
 				</div>
-				<div class="card">
+				<div class="dashboard-card">
 					<div class="head">
 						<div>
-							<h2>234</h2>
-							<p>Sales</p>
+							<?php
+								$pdoQuery = "SELECT * FROM student";
+								$pdoResult1 = $pdoConnect->prepare($pdoQuery);
+								$pdoResult1->execute();
+
+								$count = $pdoResult1->rowCount();
+
+								echo
+								"
+									<h2>$count</h2>
+								";
+							?>
+							<p>Student</p>
 						</div>
-						<i class='bx bx-trending-down icon down' ></i>
-					</div>
-					<span class="progress" data-value="60%"></span>
-					<span class="label">60%</span>
-				</div>
-				<div class="card">
-					<div class="head">
-						<div>
-							<h2>465</h2>
-							<p>Pageviews</p>
-						</div>
-						<i class='bx bx-trending-up icon' ></i>
+						<i class='bx bxs-user-pin icon' ></i>
 					</div>
 					<span class="progress" data-value="30%"></span>
-					<span class="label">30%</span>
 				</div>
-				<div class="card">
+				<div class="dashboard-card">
 					<div class="head">
 						<div>
-							<h2>235</h2>
-							<p>Visitors</p>
+							<?php
+								$pdoQuery = "SELECT * FROM academic_programs";
+								$pdoResult1 = $pdoConnect->prepare($pdoQuery);
+								$pdoResult1->execute();
+
+								$count = $pdoResult1->rowCount();
+
+								echo
+								"
+									<h2>$count</h2>
+								";
+							?>
+							<p>Program</p>
 						</div>
-						<i class='bx bx-trending-up icon' ></i>
+						<i class='bx bxs-book-reader icon' ></i>
 					</div>
 					<span class="progress" data-value="80%"></span>
-					<span class="label">80%</span>
 				</div>
-			</div> -->
-			<!-- <div class="data">
+			</div>
+			<div class="data">
 				<div class="content-data">
 					<div class="head">
-						<h3>Sales Report</h3>
+						<h3>Calendar</h3>
 						<div class="menu">
 							<i class='bx bx-dots-horizontal-rounded icon'></i>
 							<ul class="menu-link">
@@ -219,7 +235,7 @@ $updated_at  = $admin_profile["updated_at"];
 						</div>
 					</form>
 				</div>
-			</div> -->
+			</div>
 		</main>
 		<!-- MAIN -->
 	</section>
