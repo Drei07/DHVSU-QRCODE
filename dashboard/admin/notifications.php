@@ -179,6 +179,7 @@ if(!$admin_home->is_logged_in())
 		const href = $(this).attr('href')
 
 				swal({
+				title: "Signout?",
 				text: "Are you sure do you want to signout?",
 				icon: "warning",
 				buttons: true,

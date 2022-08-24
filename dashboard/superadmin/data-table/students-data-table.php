@@ -226,6 +226,7 @@ $('.view').on('click', function(e){
   const href = $(this).attr('href')
 
         swal({
+        title: "View?",
         text: "Do you want to view more?",
         icon: "info",
         buttons: true,
