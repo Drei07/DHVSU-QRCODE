@@ -52,14 +52,14 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 				</ul>
 			</li>
 			
-			<!-- <li class="divider" data-text="Academic Programs">Academic Programs</li>
+			<li class="divider" data-text="room">room</li>
 			<li>
-				<a href="#"><i class='bx bxs-notepad icon' ></i>Programs<i class='bx bx-chevron-right icon-right' ></i></a>
+				<a href="#"><i class='bx bx-current-location icon' ></i>Room<i class='bx bx-chevron-right icon-right' ></i></a>
 				<ul class="side-dropdown">
-					<li><a href="programs-list">List</a></li>
-                    <li><a href="add-programs">Add Programs</a></li>
+					<li><a href="room-list">List</a></li>
+                    <li><a href="add-room">Add Room</a></li>
 				</ul>
-			</li> -->
+			</li>
 		</ul>
 
 	</section>

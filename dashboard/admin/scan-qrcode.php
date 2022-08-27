@@ -26,12 +26,20 @@ $profile_admin = $admin_profile['adminProfile'];
 $admin_firstname = $admin_profile['adminFirst_Name'];
 $admin_lastname = $admin_profile['adminLast_Name'];
 $admin_employeeId = $admin_profile['employeeId'];
-$admin_location = ("Entered in ").($admin_profile['adminLocation']);
+$admin_location = $admin_profile['adminLocation'];
 $admin_ID = $admin_profile['uniqueId'];
 $updated_at  = $admin_profile["updated_at"];
 
 // ADMIN NAME
 $admin_name = ($admin_lastname).(", ").($admin_firstname);
+
+//LOCATION
+$pdoQuery = "SELECT * FROM location WHERE Id= :Id";
+$pdoResult1 = $pdoConnect->prepare($pdoQuery);
+$pdoExec1 = $pdoResult1->execute(array(":Id" => $admin_location));
+$location = $pdoResult1->fetch(PDO::FETCH_ASSOC);
+
+$location_name = $location["location_name"];
 
 // SCAN QRCODE
 
@@ -65,54 +73,79 @@ if(isset($_POST['scan'])){
 		$emergency_address          = $result["emergency_address"];
 		$emergency_mobile_number    = $result["emergency_mobile_number"];
 		$qrcode                   	= $result["qrcode"];
+		$date_now 					= date("Y-m-d");
 
 		if($pdoExec){
 
-			$pdoQuery = "INSERT INTO student_activity (employee_name, employee_ID, studentId, first_name, middle_name, last_name, sex, birth_date, age, place_of_birth, civil_status, nationality, religion, phone_number, email, province, city, barangay, emergency_contact_person, emergency_address, emergency_mobile_number, qrcode, activity) 
-						VALUES (:employee_name, :employee_ID, :studentId, :first_name, :middle_name, :last_name, :sex, :birth_date, :age, :place_of_birth, :civil_status, :nationality, :religion, :phone_number, :email, :province, :city, :barangay, :emergency_contact_person, :emergency_address, :emergency_mobile_number, :qrcode, :activity)";
-			$pdoResult2 = $pdoConnect->prepare($pdoQuery);
-			$pdoExec2 = $pdoResult2->execute
-			(
-			array
-			( 
-				":employee_name"            =>$admin_name,
-				":employee_ID"              =>$admin_employeeId,
-				":studentId"                =>$studentId,
-				":first_name"               =>$first_name,
-				":middle_name"              =>$middle_name,
-				":last_name"                =>$last_name,
-				":sex"                      =>$sex,
-				":birth_date"               =>$birth_date,
-				":age"                      =>$age,
-				":place_of_birth"           =>$place_of_birth,
-				":civil_status"             =>$civil_status,
-				":nationality"              =>$nationality, 
-				":religion"                 =>$religion,
-				":phone_number"             =>$phone_number,
-				":email"                    =>$email,
-				":province"                 =>$province,
-				":city"                     =>$city,
-				":barangay"                 =>$barangay,
-				":emergency_contact_person" =>$emergency_contact_person,
-				":emergency_address"        =>$emergency_address,
-				":emergency_mobile_number"  =>$emergency_mobile_number,
-				":qrcode"                   =>$qrcode,
-				":activity"                 =>$admin_location,
-			)
-			);
+			$pdoQuery = "SELECT * FROM student_activity WHERE employee_ID = :employee_ID AND activity = :activity AND date = :date";
+			$pdoResult1 = $pdoConnect->prepare($pdoQuery);
+			$pdoExec1 = $pdoResult1->execute(array(
+				":employee_ID" 	=> $admin_ID,
+				":activity" 	=> $admin_location,
+				":date" 		=> $date_now
+			));
+
+			if($pdoResult1->rowCount() > 0){
+
+				$_SESSION['status_title'] = "Oops!";
+				$_SESSION['status'] = "Student already enter the room!";
+				$_SESSION['status_code'] = "error";
+				$_SESSION['status_timer'] = 100000;
+				header('Location: scan-qrcode');
+				exit;
+	  
+			}
+			else
+			{
+
+				$pdoQuery = "INSERT INTO student_activity (employee_name, employee_ID, studentId, first_name, middle_name, last_name, sex, birth_date, age, place_of_birth, civil_status, nationality, religion, phone_number, email, province, city, barangay, emergency_contact_person, emergency_address, emergency_mobile_number, qrcode, activity, date) 
+							VALUES (:employee_name, :employee_ID, :studentId, :first_name, :middle_name, :last_name, :sex, :birth_date, :age, :place_of_birth, :civil_status, :nationality, :religion, :phone_number, :email, :province, :city, :barangay, :emergency_contact_person, :emergency_address, :emergency_mobile_number, :qrcode, :activity, :date)";
+				$pdoResult2 = $pdoConnect->prepare($pdoQuery);
+				$pdoExec2 = $pdoResult2->execute
+				(
+				array
+				( 
+					":employee_name"            =>$admin_name,
+					":employee_ID"              =>$admin_ID,
+					":studentId"                =>$studentId,
+					":first_name"               =>$first_name,
+					":middle_name"              =>$middle_name,
+					":last_name"                =>$last_name,
+					":sex"                      =>$sex,
+					":birth_date"               =>$birth_date,
+					":age"                      =>$age,
+					":place_of_birth"           =>$place_of_birth,
+					":civil_status"             =>$civil_status,
+					":nationality"              =>$nationality, 
+					":religion"                 =>$religion,
+					":phone_number"             =>$phone_number,
+					":email"                    =>$email,
+					":province"                 =>$province,
+					":city"                     =>$city,
+					":barangay"                 =>$barangay,
+					":emergency_contact_person" =>$emergency_contact_person,
+					":emergency_address"        =>$emergency_address,
+					":emergency_mobile_number"  =>$emergency_mobile_number,
+					":qrcode"                   =>$qrcode,
+					":activity"                 =>$admin_location,
+					":date"                 	=>$date_now,
+
+				)
+				);
+			}
 		}
 
 		if($pdoExec2){
 
-			$pdoQuery = "INSERT INTO student_activity_$admin_ID (employee_name, employee_ID, studentId, first_name, middle_name, last_name, sex, birth_date, age, place_of_birth, civil_status, nationality, religion, phone_number, email, province, city, barangay, emergency_contact_person, emergency_address, emergency_mobile_number, qrcode, activity) 
-						VALUES (:employee_name, :employee_ID, :studentId, :first_name, :middle_name, :last_name, :sex, :birth_date, :age, :place_of_birth, :civil_status, :nationality, :religion, :phone_number, :email, :province, :city, :barangay, :emergency_contact_person, :emergency_address, :emergency_mobile_number, :qrcode, :activity)";
+			$pdoQuery = "INSERT INTO student_activity_$admin_ID (employee_name, employee_ID, studentId, first_name, middle_name, last_name, sex, birth_date, age, place_of_birth, civil_status, nationality, religion, phone_number, email, province, city, barangay, emergency_contact_person, emergency_address, emergency_mobile_number, qrcode, activity, date) 
+						VALUES (:employee_name, :employee_ID, :studentId, :first_name, :middle_name, :last_name, :sex, :birth_date, :age, :place_of_birth, :civil_status, :nationality, :religion, :phone_number, :email, :province, :city, :barangay, :emergency_contact_person, :emergency_address, :emergency_mobile_number, :qrcode, :activity, :date)";
 			$pdoResult3 = $pdoConnect->prepare($pdoQuery);
 			$pdoExec3 = $pdoResult3->execute
 			(
 			array
 			( 
 				":employee_name"            =>$admin_name,
-				":employee_ID"              =>$admin_employeeId,
+				":employee_ID"              =>$admin_ID,
 				":studentId"                =>$studentId,
 				":first_name"               =>$first_name,
 				":middle_name"              =>$middle_name,
@@ -134,6 +167,7 @@ if(isset($_POST['scan'])){
 				":emergency_mobile_number"  =>$emergency_mobile_number,
 				":qrcode"                   =>$qrcode,
 				":activity"                 =>$admin_location,
+				":date"                 	=>$date_now,
 			)
 			);
 
@@ -159,6 +193,7 @@ if(isset($_POST['scan'])){
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -223,13 +258,16 @@ if(isset($_POST['scan'])){
 
 		<!-- MAIN -->
 		<main>
-			<h1 class="title">Scan QR-Code</h1>
+			<h1 class="title">Scan QR-Code - <label><?php echo $location_name ?></label></h1>
             <ul class="breadcrumbs">
 				<li><a href="home" >Home</a></li>
 				<li class="divider">|</li>
                 <li><a href="" class="active">Scan QR-Code</a></li>
-
 			</ul>
+
+			<div class="level">
+					<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#locationModal" style="background-color: <?php echo $advisory_color ?>;"><i class='bx bx-current-location'></i> Select Location</button>
+            </div>
 
 			<!-- PROFILE CONFIGURATION -->
 
@@ -253,9 +291,9 @@ if(isset($_POST['scan'])){
 
 							<?php
 
-								$pdoQuery = "SELECT * FROM student_activity_$admin_ID ORDER by userId DESC";
+								$pdoQuery = "SELECT * FROM student_activity_$admin_ID WHERE activity = :activity ORDER by userId DESC";
 								$pdoResult = $pdoConnect->prepare($pdoQuery);
-								$pdoExec = $pdoResult->execute();
+								$pdoExec = $pdoResult->execute(array(":activity" => $admin_location));
 
 								if($studentProfile = $pdoResult->fetch(PDO::FETCH_ASSOC)){
 
@@ -325,6 +363,142 @@ if(isset($_POST['scan'])){
 		
 		<!-- MAIN -->
 	</section>
+
+			<!-- MODALS -->
+			<div class="class-modal">
+			<div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="classModalLabel" aria-hidden="true" data-bs-backdrop="static">
+				<div class="modal-dialog modal-dialog-centered modal-lg">
+					<div class="modal-content" style="height: 700px;">
+					<div class="header"></div>
+						<div class="modal-header">
+							<h5 class="modal-title" id="classModalLabel">Please Select Location</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+						<section class="data-table">
+							<div class="searchBx">
+								<input type="input" placeholder="Search. . . . . " class="search numbers"  inputmode="numeric" name="search_box" id="search_box"><button class="searchBtn"><i class="bx bx-search icon"></i></button>
+							</div>
+
+							<div class="table">
+							<div id="student-data">
+							</div>
+						</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END MODALS -->
+
+	<?php
+		if($admin_profile['adminLocation'] == NULL)
+		{
+	?>
+		<!-- MODALS -->
+		<div class="class-modal">
+			<div class="modal fade" id="classModal" tabindex="-1" aria-labelledby="classModalLabel" aria-hidden="true" data-bs-backdrop="static">
+				<div class="modal-dialog modal-dialog-centered modal-lg">
+					<div class="modal-content" style="height: 700px;">
+					<div class="header"></div>
+						<div class="modal-header">
+							<h5 class="modal-title" id="classModalLabel">Please Select Location</h5>
+							<button type="button" class="btn-close" onclick="history.back()"></button>
+						</div>
+						<div class="modal-body">
+						<section class="data-table">
+							<div class="searchBx">
+								<input type="input" placeholder="Search. . . . . " class="search numbers"  inputmode="numeric" name="search_box" id="search_box"><button class="searchBtn"><i class="bx bx-search icon"></i></button>
+							</div>
+
+							<div class="table">
+							<div id="student-data">
+							</div>
+						</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END MODALS -->
+
+		<script src="../../src/node_modules/jquery/dist/jquery.min.js"></script>
+		<script>
+			$(window).on('load', function() {
+				$('#classModal').modal('show');
+			});
+		</script>
+	<?php
+		}
+		else
+		{
+	?>
+	    <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script>
+			//QRCODE SCANNER
+
+			var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 5, mirror: false });
+					
+					scanner.addListener('scan',function(c){
+						document.getElementById('scanqr').value=c;
+						document.forms[0].submit();
+					});
+		
+					Instascan.Camera.getCameras().then(function (cameras){
+		
+					if(cameras.length>0){
+		
+					scanner.start(cameras[0]);
+		
+					$('[name="options"]').on('change',function(){
+		
+					if($(this).val()==1){
+		
+						if(cameras[0]!=""){
+		
+						scanner.start(cameras[0]);
+		
+						}else{
+		
+						alert('No Front camera found!');
+		
+						}
+		
+					}else if($(this).val()==2){
+		
+						if(cameras[1]!=""){
+		
+						scanner.start(cameras[1]);
+		
+						}else{
+		
+						alert('No Back camera found!');
+		
+						}
+		
+					}
+		
+					});
+		
+					}else{
+		
+					console.error('No cameras found.');
+		
+					alert('No cameras found.');
+		
+					}
+		
+					}).catch(function(e){
+		
+					console.error(e);
+		
+					});
+		</script>
+	<?php
+		}
+
+	?>
 	<!-- END NAVBAR -->
 
     <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
@@ -336,66 +510,36 @@ if(isset($_POST['scan'])){
 
 
 	<script>
+        //live search---------------------------------------------------------------------------------------//
+        $(document).ready(function(){
 
-        //QRCODE SCANNER
+		load_data(1);
 
-        var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 5, mirror: false });
-                        
-            scanner.addListener('scan',function(c){
-                document.getElementById('scanqr').value=c;
-                document.forms[0].submit();
-            });
+		function load_data(page, query = '')
+		{
+		$.ajax({
+			url:"data-table/location-data-table.php",
+			method:"POST",
+			data:{page:page, query:query},
+			success:function(data)
+			{
+			$('#student-data').html(data);
+			}
+		});
+		}
 
-            Instascan.Camera.getCameras().then(function (cameras){
+		$(document).on('click', '.page-link', function(){
+		var page = $(this).data('page_number');
+		var query = $('#search_box').val();
+		load_data(page, query);
+		});
 
-            if(cameras.length>0){
+		$('#search_box').keyup(function(){
+		var query = $('#search_box').val();
+		load_data(1, query);
+		});
 
-            scanner.start(cameras[0]);
-
-            $('[name="options"]').on('change',function(){
-
-            if($(this).val()==1){
-
-                if(cameras[0]!=""){
-
-                scanner.start(cameras[0]);
-
-                }else{
-
-                alert('No Front camera found!');
-
-                }
-
-            }else if($(this).val()==2){
-
-                if(cameras[1]!=""){
-
-                scanner.start(cameras[1]);
-
-                }else{
-
-                alert('No Back camera found!');
-
-                }
-
-            }
-
-            });
-
-            }else{
-
-            console.error('No cameras found.');
-
-            alert('No cameras found.');
-
-            }
-
-            }).catch(function(e){
-
-            console.error(e);
-
-            });
-
+		});
 
 		// Signout
 		$('.btn-signout').on('click', function(e){

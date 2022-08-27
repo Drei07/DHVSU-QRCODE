@@ -11,7 +11,6 @@ if(isset($_POST['btn-register'])) {
     $middle_name    = trim($_POST['MName']);
     $last_name      = trim($_POST['LName']);
     $email          = trim($_POST['Email']);
-    $location       = trim($_POST['Location']);
 
     // Generate Password
     $varchar = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -36,7 +35,7 @@ if(isset($_POST['btn-register'])) {
     }
     else
     {
-        if($reg_admin->register($employeeId,$position,$first_name,$middle_name,$last_name,$email,$upass,$tokencode,$uniqueId,$location))
+        if($reg_admin->register($employeeId,$position,$first_name,$middle_name,$last_name,$email,$upass,$tokencode,$uniqueId))
         {   
         $id = $reg_admin->lasdID();  
         $key = base64_encode($id);

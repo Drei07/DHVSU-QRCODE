@@ -34,13 +34,13 @@ class ADMIN
   return $stmt;
  }
  
- public function register($employeeId,$position,$first_name,$middle_name,$last_name,$email,$upass,$tokencode,$uniqueId,$location)
+ public function register($employeeId,$position,$first_name,$middle_name,$last_name,$email,$upass,$tokencode,$uniqueId)
  {
   try
   {       
    $password = md5($upass);
-   $stmt = $this->conn->prepare("INSERT INTO admin(employeeId,adminPosition,adminFirst_Name,adminMiddle_Name,adminLast_Name,adminEmail,adminPassword,tokencode, uniqueId, adminLocation) 
-                                        VALUES(:employeeId,:adminPosition,:adminFirst_Name,:adminMiddle_Name,:adminLast_Name,:adminEmail,:adminPassword,:tokencode, :uniqueId, :adminLocation)");
+   $stmt = $this->conn->prepare("INSERT INTO admin(employeeId,adminPosition,adminFirst_Name,adminMiddle_Name,adminLast_Name,adminEmail,adminPassword,tokencode, uniqueId) 
+                                        VALUES(:employeeId,:adminPosition,:adminFirst_Name,:adminMiddle_Name,:adminLast_Name,:adminEmail,:adminPassword,:tokencode, :uniqueId)");
    
    $stmt->bindparam(":employeeId",$employeeId);
    $stmt->bindparam(":adminPosition",$position);
@@ -51,7 +51,6 @@ class ADMIN
    $stmt->bindparam(":adminPassword",$password);
    $stmt->bindparam(":tokencode",$tokencode);
    $stmt->bindparam(":uniqueId",$uniqueId);
-   $stmt->bindparam(":adminLocation",$location);
 
     if($stmt)
     {
@@ -80,6 +79,7 @@ class ADMIN
         emergency_mobile_number varchar(145) DEFAULT NULL,
         qrcode varchar(999) DEFAULT NULL,
         activity varchar(145) DEFAULT NULL,
+        date varchar(145) DEFAULT NULL,
         created_at timestamp NULL DEFAULT current_timestamp(),
         updated_at timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
         )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";

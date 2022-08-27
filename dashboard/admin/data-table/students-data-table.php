@@ -62,10 +62,9 @@ $output = '
     <thead>
     <th>STUDENT ID</th>
     <th>NAME</th>
-    <th>SEX</th>
-    <th>BIRTH-DATE</th>
     <th>PHONE-NUMBER</th>
     <th>EMAIL</th>
+    <th>ROOM ENTERED</th>
     <th>DATE</th>
     <th>ACTION</th>
     </thead>
@@ -76,10 +75,9 @@ $output = '
     <tr>
       <td>'.$row["studentId"].'</td>
       <td>'.$row["last_name"].',&nbsp;&nbsp;'.$row["first_name"].'&nbsp;&nbsp;&nbsp;'.$row["middle_name"].'</td>
-      <td>'.$row["sex"].'</td>
-      <td>'.$row["birth_date"].'</td>
       <td>+63'.$row["phone_number"].'</td>
       <td>'.$row["email"].'</td>
+      <td>'.$row["activity"].'</td>
       <td>'.$row["created_at"].'</td>
       <td><button type="button" class="btn btn-danger V"> <a href="student-profile?id='.$row["userId"].'" class="view">View</a></button></td>
     </tr>
@@ -223,6 +221,7 @@ $('.view').on('click', function(e){
   const href = $(this).attr('href')
 
         swal({
+        title: "View?",
         text: "Do you want to view more?",
         icon: "info",
         buttons: true,

@@ -39,9 +39,21 @@ if(isset($_POST['btn-register'])) {
     $pdoExec = $pdoResult->execute(array(":studentId"=>$StudentId,));
     $row = $pdoResult->fetch(PDO::FETCH_ASSOC);
 
+    $pdoQuery = "SELECT * FROM student WHERE email = :email";
+    $pdoResult2 = $pdoConnect->prepare($pdoQuery);
+    $pdoExec2 = $pdoResult2->execute(array(":email"=>$email,));
+    $row2 = $pdoResult2->fetch(PDO::FETCH_ASSOC);
+
     if($pdoResult->rowCount() > 0){
         $_SESSION['status_title'] = "Oops!";
         $_SESSION['status'] = "Student ID already registered. Please try another one.";
+        $_SESSION['status_code'] = "error";
+        $_SESSION['status_timer'] = 100000;
+        header('Location: ../add-students');
+    }
+    else if($pdoResult2->rowCount() > 0){
+        $_SESSION['status_title'] = "Oops!";
+        $_SESSION['status'] = "Email is already registered. Please try another one.";
         $_SESSION['status_code'] = "error";
         $_SESSION['status_timer'] = 100000;
         header('Location: ../add-students');
@@ -50,8 +62,8 @@ if(isset($_POST['btn-register'])) {
 
     $pdoQuery = "INSERT INTO student (studentId, first_name, middle_name, last_name, sex, birth_date, age, place_of_birth, civil_status, nationality, religion, phone_number, email, province, city, barangay, emergency_contact_person, emergency_address, emergency_mobile_number, qrcode) 
                     VALUES (:studentId, :first_name, :middle_name, :last_name, :sex, :birth_date, :age, :place_of_birth, :civil_status, :nationality, :religion, :phone_number, :email, :province, :city, :barangay, :emergency_contact_person, :emergency_address, :emergency_mobile_number, :qrcode)";
-    $pdoResult = $pdoConnect->prepare($pdoQuery);
-    $pdoExec = $pdoResult->execute
+    $pdoResult2 = $pdoConnect->prepare($pdoQuery);
+    $pdoExec = $pdoResult2->execute
     (
         array
         ( 

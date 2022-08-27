@@ -372,6 +372,12 @@ main .title {
 	font-weight: 600;
 	margin-bottom: 10px;
 }
+
+main .title label{
+	font-size: 15px;
+	opacity: 0.8;
+}
+
 main .breadcrumbs {
 	display: flex;
 	grid-gap: 5px;
@@ -632,8 +638,8 @@ main .data-table .qrdataTable{
 }
 
 main .data-table .table{
-	overflow-x: scroll;
-    overflow-y: hidden;
+	overflow-x: auto;
+    overflow-y: auto;
     font-size: 13px;
     margin-right: 3rem;
     height: 100%;
@@ -1099,7 +1105,132 @@ main .level button{
 	color: var(--light);
 	margin-right: .8rem;
 }
+main .level button a {
+	color: var(--light);
+	font-weight: 500;
+	text-decoration: none;
+}
 
+main .manage {
+	display: flex;
+	justify-content: right;
+	margin-top: 2rem;
+}
+main .manage button{
+	padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 15px;
+	border: none;
+}
+
+
+/* MODALS */
+
+.class-modal .modal-content {
+    border: hidden;
+    border-radius: 15px;
+    height: 100%;
+}
+
+.class-modal .modal-content .header {
+	background-color: var(--blue);
+	height: 30px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+
+.class-modal .modal-content .modal-header {
+    justify-content: left;
+	padding: 2rem;
+    border-bottom: hidden;
+}
+
+.class-modal .modal-content .modal-body {
+	padding: 2rem;
+	overflow: auto;
+}	
+/* SUBJECT CLASS MODAL */
+
+.class-modal .modal-content .modal-body .data-table{
+	display: block;
+    text-align: center;
+}
+
+.class-modal .modal-content .modal-body .data-table .searchBx{
+    display: flex;
+	justify-content: right;
+	padding-bottom: 1rem;
+
+}
+.class-modal .modal-content .modal-body .data-table .searchBx a{
+	background-color: var(--blue);
+	color: var(--light);
+	padding: 8px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: 500;
+	font-size: 14px;
+}
+
+.class-modal .modal-content .modal-body .data-table .searchBx a:hover {
+	background-color: var(--dark-blue);
+	color: var(--light);
+}
+
+.class-modal .modal-content .modal-body .data-table .searchBx .search{
+	box-shadow: 4px 4px 16px rgba(0, 0, 0, .1);
+    background-color: var(--light);
+    height: 35px;
+	border-style: none;
+    width: 270px;
+    font-size: 12px;
+    padding-left: 20px;
+    padding-right: 40px;
+    border-radius: 7px;
+    transition: all 0.3s ease;
+}
+
+.class-modal .modal-content .modal-body .data-table .searchBx .searchBtn{
+    background-color: var(--blue);
+	border-color: var(--blue);
+    border-top-right-radius: 7px;
+	border-bottom-right-radius: 7px;
+	border-style: none;
+    width:35px;
+	margin-left: -35px;
+	color: var(--light-green);
+}
+
+.class-modal .modal-content .modal-body .data-table .table {
+	padding-top: 2rem;
+}
+
+.class-modal .modal-content .modal-body .data-table .table h1 {
+	font-size: 20px;
+	background-color: var(--blue);
+	padding: 15px;
+	margin: 1rem;
+	border-radius: 10px;
+	cursor: pointer;
+
+}
+
+.class-modal .modal-content .modal-body .data-table .table h1 a {
+	color: var(--light);
+	text-decoration: none;
+}
+
+.class-modal .modal-content .modal-body .data-table .table h2 {
+	text-align: center;
+	font-size: 1.5rem;
+	padding: 5rem 0;
+}
+
+
+/* END OF MODALS */
 
 /* END OF ACADEMIC PROGRAMS */
 
@@ -1227,5 +1358,9 @@ main .btn-send:hover {
 @media screen and (max-width:400px) {
 	main .title {
 		font-size: 20px;
+	}
+	
+	main .title label{
+		font-size: 13px;
 	}
 }
