@@ -83,7 +83,7 @@ $output = '
       <td>'.$row["last_name"].',&nbsp;&nbsp;'.$row["first_name"].'&nbsp;&nbsp;&nbsp;'.$row["middle_name"].'</td>
       <td>+63'.$row["phone_number"].'</td>
       <td>'.$row["email"].'</td>
-      <td>'.$location_name.'</td>
+      <td>'.$location_name["location_name"].'</td>
       <td>'.$row["created_at"].'</td>
       <td><button type="button" class="btn btn-danger V"> <a href="student-profile?id='.$row["userId"].'" class="view">View</a></button></td>
     </tr>
