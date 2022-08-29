@@ -170,8 +170,6 @@ $employee_last_update = $employee["updated_at"];
 								</div>
 							</div>
 
-
-
                             <div class="col-md-6">
 								<label for="email" class="form-label">Email<span> *</span></label>
 								<input disabled type="email" class="form-control" autocapitalize="off" autocomplete="off" name="Email" id="email" required placeholder="<?php echo $employee_Email ?>">
@@ -179,30 +177,6 @@ $employee_last_update = $employee["updated_at"];
 								Please provide a valid Email.
 								</div>
 							</div>
-
-							<div class="col-md-6">
-                                <label for="assigned" class="form-label">Assigned<span> *</span></label>
-                                <select class="form-select form-control"  name="Assigned"  autocapitalize="on" maxlength="6" autocomplete="off" id="assigned" required>
-                                <option selected value="<?php echo $employee_location ?>"><?php echo $employee_location ?></option>
-									<?php
-										$pdoQuery = "SELECT * FROM location";
-										$pdoResult = $pdoConnect->prepare($pdoQuery);
-										$pdoResult->execute();
-										
-											while($location=$pdoResult->fetch(PDO::FETCH_ASSOC)){
-												extract($location);
-
-												echo
-												"
-													<option value='$location[location_name]'>$location[location_name]</option>
-												";
-											}
-									?>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Please select a valid Assigned.
-                                </div>
-                            </div>
 
 							<div class="col-md-6">
 								<label for="position" class="form-label">Position<span> *</span></label>
@@ -217,6 +191,14 @@ $employee_last_update = $employee["updated_at"];
 								<input  type="text" class="form-control" autocapitalize="on" maxlength="15" autocomplete="off" name="EmployeeId" id="employee_id" value="<?php echo $employeeId ?>" required >
 								<div class="invalid-feedback">
 								Please provide a Employee ID.
+								</div>
+							</div>
+
+							<div class="col-md-6" style="opacity: 0;">
+								<label for="" class="form-label">Last Name<span> *</span></label>
+								<input disabled type="text" class="form-control" autocapitalize="on" maxlength="15" autocomplete="off" name="" id="" placeholder="<?php echo $employee_Lname ?>" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" required >
+								<div class="invalid-feedback">
+								Please provide a Last Name.
 								</div>
 							</div>
 

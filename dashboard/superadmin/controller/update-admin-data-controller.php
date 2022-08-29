@@ -17,16 +17,14 @@ $userId = $_GET["Id"];
 if(isset($_POST['btn-update'])){
 
     $Location                      = trim($_POST['Assigned']);
-    $Position                      = trim($_POST['Position']);
     $EmployeeId                    = trim($_POST['EmployeeId']);
 
-    $pdoQuery = "UPDATE admin SET employeeId=:employeeId, adminPosition=:adminPosition, adminLocation=:adminLocation WHERE userId= $userId";
+    $pdoQuery = "UPDATE admin SET employeeId=:employeeId, adminLocation=:adminLocation WHERE userId= $userId";
     $pdoResult = $pdoConnect->prepare($pdoQuery);
     $pdoExec = $pdoResult->execute(
     array
     ( 
     ":employeeId"               =>$EmployeeId,
-    ":adminPosition"            =>$Position,
     ":adminLocation"            =>$Location,
 
     )
