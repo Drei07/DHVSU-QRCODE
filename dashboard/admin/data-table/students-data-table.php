@@ -71,13 +71,19 @@ $output = '
 ';
   while($row=$statement->fetch(PDO::FETCH_ASSOC))
   {
+    $activityId = $row["activity"];
+    $pdoQuery = "SELECT * FROM location WHERE Id = :Id";
+    $pdoResult = $pdoConnect->prepare($pdoQuery);
+    $pdoExec = $pdoResult->execute(array(":Id" => $activityId));
+    $location_name = $pdoResult->fetch(PDO::FETCH_ASSOC);
+
     $output .= '
     <tr>
       <td>'.$row["studentId"].'</td>
       <td>'.$row["last_name"].',&nbsp;&nbsp;'.$row["first_name"].'&nbsp;&nbsp;&nbsp;'.$row["middle_name"].'</td>
       <td>+63'.$row["phone_number"].'</td>
       <td>'.$row["email"].'</td>
-      <td>'.$row["activity"].'</td>
+      <td>'.$location_name.'</td>
       <td>'.$row["created_at"].'</td>
       <td><button type="button" class="btn btn-danger V"> <a href="student-profile?id='.$row["userId"].'" class="view">View</a></button></td>
     </tr>

@@ -252,7 +252,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                             
                             <div class="col-md-6">
                                 <label for="province" class="form-label">Province<span> *</span></label>
-								<input type="text" class="form-control" autocapitalize="on"  autocomplete="off" name="Province" id="province" >
+								<input type="text" class="form-control" autocapitalize="on"  autocomplete="off" name="Province" id="province" required>
                                 <div class="invalid-feedback">
                                     Please select a valid Province.
                                 </div>
@@ -260,7 +260,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
                             <div class="col-md-6">
                                 <label for="city" class="form-label">City/Municipality<span> *</span></label>
-                                <input type="text" class="form-control" autocapitalize="on"  autocomplete="off" name="City" id="city" >
+                                <input type="text" class="form-control" autocapitalize="on"  autocomplete="off" name="City" id="city" required>
                                 <div class="invalid-feedback">
                                     Please select a valid City.
                                 </div>
@@ -268,7 +268,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
                             <div class="col-md-6">
                                 <label for="barangay" class="form-label">Barangay<span> *</span></label>
-								<input type="text" class="form-control" autocapitalize="on"  autocomplete="off" name="Barangay" id="barangay" >
+								<input type="text" class="form-control" autocapitalize="on"  autocomplete="off" name="Barangay" id="barangay" required>
                                 <div class="invalid-feedback">
                                     Please select a valid Barangay.
                                 </div>
