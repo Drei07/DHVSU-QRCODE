@@ -34,12 +34,26 @@ $updated_at  = $admin_profile["updated_at"];
 $admin_name = ($admin_lastname).(", ").($admin_firstname);
 
 //LOCATION
+
+if($admin_location == NULL){
+
+	$pdoQuery = "SELECT * FROM location WHERE Id= :Id";
+	$pdoResult1 = $pdoConnect->prepare($pdoQuery);
+	$pdoExec1 = $pdoResult1->execute(array(":Id" => $admin_location));
+	$location = $pdoResult1->fetch(PDO::FETCH_ASSOC);
+
+	$location_name = "";
+}
+else{
+
+
 $pdoQuery = "SELECT * FROM location WHERE Id= :Id";
 $pdoResult1 = $pdoConnect->prepare($pdoQuery);
 $pdoExec1 = $pdoResult1->execute(array(":Id" => $admin_location));
 $location = $pdoResult1->fetch(PDO::FETCH_ASSOC);
 
 $location_name = $location["location_name"];
+}
 
 // SCAN QRCODE
 
@@ -266,7 +280,7 @@ if(isset($_POST['scan'])){
 			</ul>
 
 			<div class="level">
-					<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#locationModal" style="background-color: <?php echo $advisory_color ?>;"><i class='bx bx-current-location'></i> Select Location</button>
+					<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#classModal" style="background-color: <?php echo $advisory_color ?>;"><i class='bx bx-current-location'></i> Select Location</button>
             </div>
 
 			<!-- PROFILE CONFIGURATION -->
@@ -366,13 +380,13 @@ if(isset($_POST['scan'])){
 
 			<!-- MODALS -->
 			<div class="class-modal">
-			<div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="classModalLabel" aria-hidden="true" data-bs-backdrop="static">
+			<div class="modal fade" id="classModal" tabindex="-1" aria-labelledby="classModalLabel" aria-hidden="true" data-bs-backdrop="static">
 				<div class="modal-dialog modal-dialog-centered modal-lg">
 					<div class="modal-content" style="height: 700px;">
 					<div class="header"></div>
 						<div class="modal-header">
 							<h5 class="modal-title" id="classModalLabel">Please Select Location</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							<button type="button" class="btn-close" onclick="history.back()"></button>
 						</div>
 						<div class="modal-body">
 						<section class="data-table">

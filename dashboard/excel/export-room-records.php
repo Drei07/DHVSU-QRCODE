@@ -60,7 +60,7 @@ $sheet = $spreadsheet->getSheetByName('front')
 
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="student-attendance.xlsx"');
+header('Content-Disposition: attachment;filename="'.$location["location_name"].'-student-attendance-'.date("Y-m-d").'.xlsx"');
 
 $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
 $writer->save('php://output');
