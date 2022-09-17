@@ -90,7 +90,7 @@ $updated_at  				= $admin_profile["updated_at"];
 				<ul class="profile-link">
 					<li><a href="profile"><i class='bx bxs-user-circle icon' ></i> Profile</a></li>
 					<li><a href="settings"><i class='bx bxs-cog' ></i> Settings</a></li>
-					<li><a href="authentication/user-signout" class="btn-signout"><i class='bx bxs-log-out-circle' ></i> Signout</a></li>
+					<li><a href="authentication/admin-signout" class="btn-signout"><i class='bx bxs-log-out-circle' ></i> Signout</a></li>
 				</ul>
 			</div>
 		</nav>

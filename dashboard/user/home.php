@@ -1,29 +1,29 @@
 <?php
 include_once '../../database/dbconfig2.php';
-require_once 'authentication/admin-class.php';
+require_once 'authentication/user-class.php';
 include_once '../superadmin/controller/select-settings-coniguration-controller.php';
 
 
-$admin_home = new ADMIN();
+$user_home = new USER();
 
-if(!$admin_home->is_logged_in())
+if(!$user_home->is_logged_in())
 {
- $admin_home->redirect('../../public/admin/signin');
+ $user_home->redirect('../../');
 }
 
-$stmt = $admin_home->runQuery("SELECT * FROM admin WHERE userId=:uid");
-$stmt->execute(array(":uid"=>$_SESSION['adminSession']));
+$stmt = $user_home->runQuery("SELECT * FROM student WHERE userId=:uid");
+$stmt->execute(array(":uid"=>$_SESSION['userSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $UId = $row['userId'];
 
-$pdoQuery = "SELECT * FROM admin WHERE userId=$UId";
+$pdoQuery = "SELECT * FROM student WHERE userId=$UId";
 $pdoResult = $pdoConnect->prepare($pdoQuery);
 $pdoExec = $pdoResult->execute(array());
-$admin_profile = $pdoResult->fetch(PDO::FETCH_ASSOC);
+$user_profile = $pdoResult->fetch(PDO::FETCH_ASSOC);
 
-$profile_admin = $admin_profile['adminProfile'];
-$updated_at  = $admin_profile["updated_at"];
+$profile_user = $user_profile['profile'];
+$updated_at  = $user_profile["updated_at"];
 
 
 ?>
@@ -76,14 +76,14 @@ $updated_at  = $admin_profile["updated_at"];
 			</a>
 			<span class="divider"></span>
 			<div class="dropdown">
-				<span><?php echo $row['adminLast_Name']; ?>, <?php echo $row['adminFirst_Name']; ?></i></span>
+				<span><?php echo $row['last_name']; ?>, <?php echo $row['first_name']; ?></i></span>
 			</div>	
 			<div class="profile">
-				<img src="../../src/img/<?php echo $profile_admin ?>" alt="">
+				<img src="../../src/img/<?php echo $profile_user ?>" alt="">
 				<ul class="profile-link">
 					<li><a href="profile"><i class='bx bxs-user-circle icon' ></i> Profile</a></li>
 					<li><a href="settings"><i class='bx bxs-cog' ></i> Settings</a></li>
-					<li><a href="authentication/admin-signout" class="btn-signout"><i class='bx bxs-log-out-circle' ></i> Signout</a></li>
+					<li><a href="authentication/user-signout" class="btn-signout"><i class='bx bxs-log-out-circle' ></i> Signout</a></li>
 				</ul>
 			</div>
 		</nav>
