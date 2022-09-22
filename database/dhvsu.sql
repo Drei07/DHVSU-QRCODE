@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2022 at 04:12 AM
+-- Generation Time: Sep 22, 2022 at 02:07 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -73,7 +73,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`userId`, `employeeId`, `adminPosition`, `adminFirst_Name`, `adminMiddle_Name`, `adminLast_Name`, `adminEmail`, `adminPassword`, `adminStatus`, `tokencode`, `adminProfile`, `uniqueId`, `adminLocation`, `created_at`, `updated_at`) VALUES
-(1, '201800616', 'Web Dev', 'Andrei', 'Manalansan', 'Viscayno', 'andrei.m.viscayno@gmail.com', 'aa7b47f848dd64502fecd3110499d7a7', 'Y', 'a60dfffc9d5bbc07926f8e4bad8df187', 'profile-red.png', '98965b1d82b8023fd6bd4ba823353307', 'Room 101', '2022-07-26 01:49:52', '2022-07-26 01:50:50');
+(1, '201800616', 'Web Dev', 'Andrei', 'Manalansan', 'Viscayno', 'andrei.m.viscayno@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'Y', '8127291922e8f2ddfa6b027aa82b2873', 'profile-red.png', '98965b1d82b8023fd6bd4ba823353307', '3', '2022-07-26 01:49:52', '2022-09-17 05:52:37');
 
 -- --------------------------------------------------------
 
@@ -135,9 +135,10 @@ CREATE TABLE `location` (
 --
 
 INSERT INTO `location` (`Id`, `location_name`, `created_at`, `updated_at`) VALUES
-(1, 'Comfort Room', '2022-07-17 12:51:02', NULL),
-(2, 'Room 101', '2022-07-17 12:52:34', NULL),
-(3, 'Room 102', '2022-07-17 12:52:46', NULL);
+(1, 'COMFORT ROOM', '2022-07-17 12:51:02', '2022-08-29 00:31:22'),
+(2, 'ROOM 101', '2022-07-17 12:52:34', '2022-08-27 07:55:34'),
+(3, 'ROOM 102', '2022-07-17 12:52:46', '2022-08-27 07:55:27'),
+(4, 'ROOM 207', '2022-08-27 07:51:37', NULL);
 
 -- --------------------------------------------------------
 
@@ -160,6 +161,7 @@ CREATE TABLE `student` (
   `religion` varchar(145) DEFAULT NULL,
   `phone_number` varchar(145) DEFAULT NULL,
   `email` varchar(145) DEFAULT NULL,
+  `password` varchar(145) DEFAULT NULL,
   `province` varchar(145) DEFAULT NULL,
   `city` varchar(145) DEFAULT NULL,
   `barangay` varchar(147) DEFAULT NULL,
@@ -167,6 +169,9 @@ CREATE TABLE `student` (
   `emergency_address` varchar(145) DEFAULT NULL,
   `emergency_mobile_number` varchar(145) DEFAULT NULL,
   `qrcode` varchar(999) DEFAULT NULL,
+  `status` enum('Y','N') NOT NULL DEFAULT 'N',
+  `tokencode` varchar(145) DEFAULT NULL,
+  `profile` varchar(145) DEFAULT 'profile-red.png',
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -175,9 +180,10 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`userId`, `studentId`, `first_name`, `middle_name`, `last_name`, `sex`, `birth_date`, `age`, `place_of_birth`, `civil_status`, `nationality`, `religion`, `phone_number`, `email`, `province`, `city`, `barangay`, `emergency_contact_person`, `emergency_address`, `emergency_mobile_number`, `qrcode`, `created_at`, `updated_at`) VALUES
-(7, '2018006164', 'Andrei', 'Manalansan', 'Viscayno', 'Male', '2000-01-07', '22', 'Lubao, Pampanga', 'Single', 'Philippines', 'Roman Catholic', '9776621929', 'andreishania07012000@gmail.com', 'Bataan', 'Hermosa', 'Saba', 'Nolita Viscayno', 'Saba, Hermosa, Bataan', '9776621929', '672b0479d1ae67bbcf9b2ac09c9c2ae6', '2022-07-23 14:22:44', NULL),
-(8, '2108006163', 'Shania', 'Manalansan', 'Viscayno', 'Female', '2000-01-07', '22', 'Lubao, Pampanga', 'Single', 'Philippines', 'Roman Catholic', '9776621929', 'andrei@gmail.com', 'Bataan', 'Hermosa', 'Saba', 'Andrei Viscayno', 'Saba, Hermosa, Bataan', '9776621929', '68a440a438b99e53e1dc8228c8ea5143', '2022-07-26 00:55:11', NULL);
+INSERT INTO `student` (`userId`, `studentId`, `first_name`, `middle_name`, `last_name`, `sex`, `birth_date`, `age`, `place_of_birth`, `civil_status`, `nationality`, `religion`, `phone_number`, `email`, `password`, `province`, `city`, `barangay`, `emergency_contact_person`, `emergency_address`, `emergency_mobile_number`, `qrcode`, `status`, `tokencode`, `profile`, `created_at`, `updated_at`) VALUES
+(7, '2018006164', 'Andrei', 'Manalansan', 'Viscayno', 'Male', '2000-01-07', '22', 'Lubao, Pampanga', 'Single', 'Philippines', 'Roman Catholic', '9776621929', 'andreishania07012000@gmail.com', NULL, 'Bataan', 'Hermosa', 'Saba', 'Nolita Viscayno', 'Saba, Hermosa, Bataan', '9776621929', '672b0479d1ae67bbcf9b2ac09c9c2ae6', 'N', 'b3c2dc375edf8a69d45bcbeac8f805a5', NULL, '2022-07-23 14:22:44', '2022-09-17 06:50:05'),
+(8, '2108006163', 'Shania', 'Manalansan', 'Viscayno', 'Female', '2000-01-07', '22', 'Lubao, Pampanga', 'Single', 'Philippines', 'Roman Catholic', '9776621929', 'andrei@gmail.com', NULL, 'Bataan', 'Hermosa', 'Saba', 'Andrei Viscayno', 'Saba, Hermosa, Bataan', '9776621929', '68a440a438b99e53e1dc8228c8ea5143', 'N', 'b3c2dc375edf8a69d45bcbeac2f805a5', NULL, '2022-07-26 00:55:11', '2022-09-17 06:50:10'),
+(9, '2018006164', 'Andrei', 'Manalansan', 'Viscayno', 'Female', '2000-01-07', '22', 'lubao', 'Single', 'Philippines', 'Roman Catholic', '9776621929', 'andrei.m.viscayno@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'Bataan', 'Hermosa', 'Saba', '', '', '', 'Andrei', 'Y', '7b70c56407e84bdc56d82439bbdab7ad', 'profile-red.png', '2022-09-17 10:59:06', '2022-09-19 13:29:02');
 
 -- --------------------------------------------------------
 
@@ -210,6 +216,7 @@ CREATE TABLE `student_activity` (
   `emergency_mobile_number` varchar(145) DEFAULT NULL,
   `qrcode` varchar(999) DEFAULT NULL,
   `activity` varchar(145) DEFAULT NULL,
+  `date` varchar(145) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -218,8 +225,8 @@ CREATE TABLE `student_activity` (
 -- Dumping data for table `student_activity`
 --
 
-INSERT INTO `student_activity` (`userId`, `employee_name`, `employee_ID`, `studentId`, `first_name`, `middle_name`, `last_name`, `sex`, `birth_date`, `age`, `place_of_birth`, `civil_status`, `nationality`, `religion`, `phone_number`, `email`, `province`, `city`, `barangay`, `emergency_contact_person`, `emergency_address`, `emergency_mobile_number`, `qrcode`, `activity`, `created_at`, `updated_at`) VALUES
-(1, 'Viscayno, Andrei', '201800616', '2108006163', 'Shania', 'Manalansan', 'Viscayno', 'Female', '2000-01-07', '22', 'Lubao, Pampanga', 'Single', 'Philippines', 'Roman Catholic', '9776621929', 'andrei@gmail.com', 'Bataan', 'Hermosa', 'Saba', 'Andrei Viscayno', 'Saba, Hermosa, Bataan', '9776621929', '68a440a438b99e53e1dc8228c8ea5143', 'Entered in Room 101', '2022-07-26 01:54:36', NULL);
+INSERT INTO `student_activity` (`userId`, `employee_name`, `employee_ID`, `studentId`, `first_name`, `middle_name`, `last_name`, `sex`, `birth_date`, `age`, `place_of_birth`, `civil_status`, `nationality`, `religion`, `phone_number`, `email`, `province`, `city`, `barangay`, `emergency_contact_person`, `emergency_address`, `emergency_mobile_number`, `qrcode`, `activity`, `date`, `created_at`, `updated_at`) VALUES
+(1, 'Viscayno, Andrei', '98965b1d82b8023fd6bd4ba823353307', '2108006163', 'Shania', 'Manalansan', 'Viscayno', 'Female', '2000-01-07', '22', 'Lubao, Pampanga', 'Single', 'Philippines', 'Roman Catholic', '9776621929', 'andrei@gmail.com', 'Bataan', 'Hermosa', 'Saba', 'Andrei Viscayno', 'Saba, Hermosa, Bataan', '9776621929', '68a440a438b99e53e1dc8228c8ea5143', '3', '2022-09-17', '2022-09-17 06:15:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -252,6 +259,7 @@ CREATE TABLE `student_activity_98965b1d82b8023fd6bd4ba823353307` (
   `emergency_mobile_number` varchar(145) DEFAULT NULL,
   `qrcode` varchar(999) DEFAULT NULL,
   `activity` varchar(145) DEFAULT NULL,
+  `date` varchar(145) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -260,8 +268,8 @@ CREATE TABLE `student_activity_98965b1d82b8023fd6bd4ba823353307` (
 -- Dumping data for table `student_activity_98965b1d82b8023fd6bd4ba823353307`
 --
 
-INSERT INTO `student_activity_98965b1d82b8023fd6bd4ba823353307` (`userId`, `employee_name`, `employee_ID`, `studentId`, `first_name`, `middle_name`, `last_name`, `sex`, `birth_date`, `age`, `place_of_birth`, `civil_status`, `nationality`, `religion`, `phone_number`, `email`, `province`, `city`, `barangay`, `emergency_contact_person`, `emergency_address`, `emergency_mobile_number`, `qrcode`, `activity`, `created_at`, `updated_at`) VALUES
-(1, 'Viscayno, Andrei', '201800616', '2108006163', 'Shania', 'Manalansan', 'Viscayno', 'Female', '2000-01-07', '22', 'Lubao, Pampanga', 'Single', 'Philippines', 'Roman Catholic', '9776621929', 'andrei@gmail.com', 'Bataan', 'Hermosa', 'Saba', 'Andrei Viscayno', 'Saba, Hermosa, Bataan', '9776621929', '68a440a438b99e53e1dc8228c8ea5143', 'Entered in Room 101', '2022-07-26 01:54:36', NULL);
+INSERT INTO `student_activity_98965b1d82b8023fd6bd4ba823353307` (`userId`, `employee_name`, `employee_ID`, `studentId`, `first_name`, `middle_name`, `last_name`, `sex`, `birth_date`, `age`, `place_of_birth`, `civil_status`, `nationality`, `religion`, `phone_number`, `email`, `province`, `city`, `barangay`, `emergency_contact_person`, `emergency_address`, `emergency_mobile_number`, `qrcode`, `activity`, `date`, `created_at`, `updated_at`) VALUES
+(1, 'Viscayno, Andrei', '98965b1d82b8023fd6bd4ba823353307', '2108006163', 'Shania', 'Manalansan', 'Viscayno', 'Female', '2000-01-07', '22', 'Lubao, Pampanga', 'Single', 'Philippines', 'Roman Catholic', '9776621929', 'andrei@gmail.com', 'Bataan', 'Hermosa', 'Saba', 'Andrei Viscayno', 'Saba, Hermosa, Bataan', '9776621929', '68a440a438b99e53e1dc8228c8ea5143', '3', '2022-09-17', '2022-09-17 06:15:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -285,7 +293,7 @@ CREATE TABLE `superadmin` (
 --
 
 INSERT INTO `superadmin` (`superadminId`, `name`, `email`, `password`, `tokencode`, `profile`, `created_at`, `updated_at`) VALUES
-(1, 'Andrei Shania', 'andrei.m.viscayno@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'cf3d41ef87dbd96fe6b963af1eb9c0f6', 'DHVSU_logo.png', '2022-07-03 00:09:13', '2022-07-26 00:42:52');
+(1, 'Andrei Viscayno', 'andrei.m.viscayno@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'cf3d41ef87dbd96fe6b963af1eb9c0f6', 'DHVSU_logo.png', '2022-07-03 00:09:13', '2022-08-24 12:02:11');
 
 -- --------------------------------------------------------
 
@@ -543,7 +551,32 @@ INSERT INTO `tb_logs` (`activityId`, `user`, `email`, `activity`, `date`) VALUES
 (192, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-07-26 08:50:46 AM'),
 (193, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-07-26 09:06:22 AM'),
 (194, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-07-26 09:48:00 AM'),
-(195, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-07-26 09:51:08 AM');
+(195, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-07-26 09:51:08 AM'),
+(196, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-07-28 04:41:01 PM'),
+(197, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-21 09:17:57 AM'),
+(198, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-21 11:32:42 AM'),
+(199, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-21 11:51:09 AM'),
+(200, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-24 07:29:15 PM'),
+(201, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-24 07:30:22 PM'),
+(202, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-24 07:42:32 PM'),
+(203, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-24 07:47:53 PM'),
+(204, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-24 07:48:02 PM'),
+(205, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-24 07:49:13 PM'),
+(206, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-24 08:28:14 PM'),
+(207, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-26 06:12:41 PM'),
+(208, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-27 07:58:54 AM'),
+(209, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-27 07:59:32 AM'),
+(210, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-29 08:02:31 AM'),
+(211, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-29 02:04:17 PM'),
+(212, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-03 06:55:58 PM'),
+(213, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-15 02:29:53 PM'),
+(214, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-15 02:30:04 PM'),
+(215, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-17 01:40:47 PM'),
+(216, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-17 01:41:11 PM'),
+(217, 'Student andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-17 07:46:26 PM'),
+(218, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-19 09:19:48 PM'),
+(219, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-19 09:19:58 PM'),
+(220, 'Student andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-19 09:29:18 PM');
 
 -- --------------------------------------------------------
 
@@ -731,13 +764,13 @@ ALTER TABLE `google_recaptcha_api`
 -- AUTO_INCREMENT for table `location`
 --
 ALTER TABLE `location`
-  MODIFY `Id` int(145) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(145) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `userId` int(145) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `userId` int(145) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `student_activity`
@@ -773,7 +806,7 @@ ALTER TABLE `system_logo`
 -- AUTO_INCREMENT for table `tb_logs`
 --
 ALTER TABLE `tb_logs`
-  MODIFY `activityId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=196;
+  MODIFY `activityId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
 
 --
 -- AUTO_INCREMENT for table `tb_preregistration`
