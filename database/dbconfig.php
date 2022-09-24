@@ -4,7 +4,7 @@ class Database
      
     private $host = "localhost";
     private $db_name = "u867039073_dhvsu_qrcode";
-    private $username = "root";
+    private $username = "u867039073_qtracker";
     private $password = "Andrei12";
     public $conn;
      
