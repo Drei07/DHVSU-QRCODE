@@ -41,6 +41,8 @@ $acronym = $academic_subjects["acronym"];
 </head>
 <body>
 
+<!-- Loader -->
+<div class="loader"></div>
 
 	<!-- SIDEBAR -->
 	<section id="sidebar" class="hide">
@@ -149,7 +151,8 @@ $acronym = $academic_subjects["acronym"];
 	<script src="../../src/node_modules/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="../../src/node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="../../src/js/dashboard.js"></script>
-
+    <script src="../../src/js/loader.js"></script>
+	
 
 
 	<script>

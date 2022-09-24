@@ -48,6 +48,9 @@ $employee_last_update = $employee["updated_at"];
 </head>
 <body>
 
+<!-- Loader -->
+<div class="loader"></div>
+
 
 	<!-- SIDEBAR -->
 	<section id="sidebar" class="hide">
@@ -223,7 +226,8 @@ $employee_last_update = $employee["updated_at"];
 	<script src="../../src/node_modules/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="../../src/node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="../../src/js/dashboard.js"></script>
-
+    <script src="../../src/js/loader.js"></script>
+	
 	<script>
 		
 

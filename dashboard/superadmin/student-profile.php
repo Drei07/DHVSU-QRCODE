@@ -62,6 +62,8 @@ $updated_at                 = $student["updated_at"];
 </head>
 <body>
 
+<!-- Loader -->
+<div class="loader"></div>
 
 	<!-- SIDEBAR -->
 	<section id="sidebar" class="hide">
@@ -449,7 +451,8 @@ $updated_at                 = $student["updated_at"];
 	<script src="../../src/node_modules/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="../../src/js/dashboard.js"></script>
 	<script src="../../src/js/qrcode.js"></script>
-
+    <script src="../../src/js/loader.js"></script>
+	
 
 <script>
 

@@ -31,6 +31,8 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 </head>
 <body>
 
+<!-- Loader -->
+<div class="loader"></div>
 
 	<!-- SIDEBAR -->
 	<section id="sidebar" class="hide">
@@ -320,7 +322,8 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 	<script src="../../src/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="../../src/node_modules/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="../../src/js/dashboard.js"></script>
- 
+	<script src="../../src/js/loader.js"></script>
+	
 	<script type="text/javascript">
 
 		// Form
