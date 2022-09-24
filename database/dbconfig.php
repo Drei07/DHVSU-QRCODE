@@ -2,11 +2,18 @@
 class Database
 {
      
-    private $host = "localhost";
-    private $db_name = "dhvsu";
-    private $username = "root";
-    private $password = "";
-    public $conn;
+    // LOCALHOST
+    // private $host = "localhost";
+    // private $db_name = "dhvsu";
+    // private $username = "root";
+    // private $password = "";
+    // public $conn;
+
+
+    // LIVE
+    private $db_name = "u867039073_dhvsu_qrcode";
+    private $username = "u867039073_dhvsu_qrcode";
+    private $password = "Andreishania12";
      
     public function dbConnection()
  {
