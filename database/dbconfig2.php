@@ -1,6 +1,6 @@
 <?php
 	try {
-		$pdoConnect = new PDO("mysql:host=localhost;dbname=u867039073_dhvsu_qrcode", "root", "Andrei12");
+		$pdoConnect = new PDO("mysql:host=localhost;dbname=dhvsu", "root", "");
 		$pdoConnect->setAttribute(PDO:: ATTR_ERRMODE, PDO:: ERRMODE_EXCEPTION);
 
 	}
