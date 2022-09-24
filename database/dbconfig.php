@@ -10,10 +10,11 @@ class Database
     // public $conn;
 
 
-    // LIVE
+    // // LIVE
     private $db_name = "u867039073_dhvsu_qrcode";
     private $username = "u867039073_dhvsu_qrcode";
     private $password = "Andreishania12";
+    public $conn;
      
     public function dbConnection()
  {
