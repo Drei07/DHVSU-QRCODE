@@ -120,8 +120,8 @@ class SUPERADMIN
  public function logout()
  {
 
-  session_destroy();
-  $_SESSION['superadminSession'] = false;
+
+  unset($_SESSION['superadminSession']);
  }
  
  function send_mail($email,$message,$subject,$smtp_email,$smtp_password,$system_name)
