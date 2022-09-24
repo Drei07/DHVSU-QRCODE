@@ -3,9 +3,9 @@ class Database
 {
      
     private $host = "localhost";
-    private $db_name = "dhvsu";
+    private $db_name = "u867039073_dhvsu_qrcode";
     private $username = "root";
-    private $password = "";
+    private $password = "Andrei12";
     public $conn;
      
     public function dbConnection()
