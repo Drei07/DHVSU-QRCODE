@@ -222,6 +222,8 @@ if(isset($_POST['scan'])){
 </head>
 <body>
 
+<!-- Loader -->
+<div class="loader"></div>
 
 	<!-- SIDEBAR -->
 	<section id="sidebar" class="hide">
@@ -521,7 +523,8 @@ if(isset($_POST['scan'])){
 	<script src="../../src/node_modules/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="../../src/node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="../../src/js/dashboard.js"></script>
-
+    <script src="../../src/js/loader.js"></script>
+	
 
 	<script>
         //live search---------------------------------------------------------------------------------------//

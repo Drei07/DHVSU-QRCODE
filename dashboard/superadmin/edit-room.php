@@ -39,6 +39,8 @@ $location_name     = $location["location_name"];
 </head>
 <body>
 
+<!-- Loader -->
+<div class="loader"></div>
 
 	<!-- SIDEBAR -->
 	<section id="sidebar" class="hide">
@@ -143,7 +145,8 @@ $location_name     = $location["location_name"];
 	<script src="../../src/node_modules/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="../../src/node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="../../src/js/dashboard.js"></script>
-
+    <script src="../../src/js/loader.js"></script>
+	
 	<script>
 
 		// Form

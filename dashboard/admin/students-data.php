@@ -40,6 +40,8 @@ $updated_at  = $admin_profile["updated_at"];
 </head>
 <body>
 
+<!-- Loader -->
+<div class="loader"></div>
 
     <section id="sidebar" class="hide">
 		<a href="#" class="brand"><img src="../../src/img/<?php echo $logo ?>" alt="logo" class="brand-img"></i>&nbsp;&nbsp;DHVSU</a>
@@ -115,7 +117,8 @@ $updated_at  = $admin_profile["updated_at"];
 	<script src="../../src/node_modules/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="../../src/node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="../../src/js/dashboard.js"></script>
-
+    <script src="../../src/js/loader.js"></script>
+	
 
 
 	<script>
