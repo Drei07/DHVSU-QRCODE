@@ -146,7 +146,7 @@ $updated_at  = $user_profile["updated_at"];
 					<div class="head">
 						<div>
 							<?php
-								$pdoQuery = "SELECT * FROM academic_programs";
+								$pdoQuery = "SELECT * FROM student";
 								$pdoResult1 = $pdoConnect->prepare($pdoQuery);
 								$pdoResult1->execute();
 

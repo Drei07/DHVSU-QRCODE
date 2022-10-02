@@ -2,15 +2,15 @@
 class Database
 {
      
-    // LOCALHOST
+    // localhost----------------------------------------
     // private $host = "localhost";
     // private $db_name = "dhvsu";
     // private $username = "root";
     // private $password = "";
     // public $conn;
-
-
-    // // LIVE
+     
+    // Live---------------------------------------------
+    private $host = "localhost";
     private $db_name = "u867039073_dhvsu_qrcode";
     private $username = "u867039073_dhvsu_qrcode";
     private $password = "Andreishania12";
