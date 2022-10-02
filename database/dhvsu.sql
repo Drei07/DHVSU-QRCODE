@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2022 at 03:26 PM
+-- Generation Time: Oct 02, 2022 at 08:47 PM
 -- Server version: 10.4.24-MariaDB
--- PHP Version: 8.0.19
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -50,7 +50,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`userId`, `employeeId`, `adminPosition`, `adminFirst_Name`, `adminMiddle_Name`, `adminLast_Name`, `adminEmail`, `adminPassword`, `adminStatus`, `tokencode`, `adminProfile`, `uniqueId`, `adminLocation`, `created_at`, `updated_at`) VALUES
-(1, '201800616', 'Web Dev', 'Andrei', 'Manalansan', 'Viscayno', 'andreishania07012000@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'Y', '8127291922e8f2ddfa6b027aa82b2873', 'profile-red.png', '98965b1d82b8023fd6bd4ba823353307', '3', '2022-07-26 01:49:52', '2022-09-24 08:31:08');
+(1, '201800616', 'Web Dev', 'Tracy Anne ', 'Lagman', 'Dizon', 'dizontracyanne@gmail.com', '24b35e91f6650c460b66bceaa1590664', 'Y', '8127291922e8f2ddfa6b027aa82b2873', 'profile-red.png', '98965b1d82b8023fd6bd4ba823353307', '3', '2022-07-26 01:49:52', '2022-10-02 18:35:43');
 
 -- --------------------------------------------------------
 
@@ -270,7 +270,7 @@ CREATE TABLE `superadmin` (
 --
 
 INSERT INTO `superadmin` (`superadminId`, `name`, `email`, `password`, `tokencode`, `profile`, `created_at`, `updated_at`) VALUES
-(1, 'Andrei Viscayno', 'andrei.m.viscayno@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'cf3d41ef87dbd96fe6b963af1eb9c0f6', 'DHVSU_logo.png', '2022-07-03 00:09:13', '2022-08-24 12:02:11');
+(1, 'Tracy Anne Dizon', 'dizontracyannegmail.com', '24b35e91f6650c460b66bceaa1590664', 'cf3d41ef87dbd96fe6b963af1eb9c0f6', 'DHVSU_logo.png', '2022-07-03 00:09:13', '2022-10-02 18:36:18');
 
 -- --------------------------------------------------------
 
@@ -623,7 +623,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userId`, `employeeId`, `userPosition`, `userFirst_Name`, `userMiddle_Name`, `userLast_Name`, `userPhone_Number`, `userEmail`, `userPassword`, `userStatus`, `tokencode`, `userProfile`, `created_at`, `updated_at`) VALUES
-(197, '2o2458285824582', 'Web Dev', 'Andrei', 'Manalansan', 'Viscayno', '9776621929', 'andreishania07012000@gmail.com', '24b35e91f6650c460b66bceaa1590664', 'Y', 'b3c2dc375edf8a69d45bcbeac8f805a5', 'coe_logo512px.png', '2022-07-05 11:39:33', '2022-07-12 08:00:26');
+(197, '2o2458285824582', 'Web Dev', 'Tracy Anne ', 'Lagman', 'Dizon', '09076455712', 'dizontracyanne@gmail.com', '24b35e91f6650c460b66bceaa1590664', 'Y', 'b3c2dc375edf8a69d45bcbeac8f805a5', 'coe_logo512px.png', '2022-07-05 11:39:33', '2022-10-02 18:34:39');
 
 --
 -- Indexes for dumped tables
