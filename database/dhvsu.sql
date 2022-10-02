@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2022 at 02:07 PM
+-- Generation Time: Oct 02, 2022 at 03:26 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -20,29 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `dhvsu`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `academic_programs`
---
-
-CREATE TABLE `academic_programs` (
-  `Id` int(145) NOT NULL,
-  `programID` varchar(145) DEFAULT NULL,
-  `programs` varchar(145) DEFAULT NULL,
-  `acronym` varchar(145) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `academic_programs`
---
-
-INSERT INTO `academic_programs` (`Id`, `programID`, `programs`, `acronym`, `created_at`, `updated_at`) VALUES
-(1, '80874241', 'Science, Technology, Engineering, and Mathematics', 'STEM', '2022-07-11 13:31:34', NULL),
-(2, '94374304', 'Tech-Voc Track', 'TVL', '2022-07-12 00:03:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -73,7 +50,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`userId`, `employeeId`, `adminPosition`, `adminFirst_Name`, `adminMiddle_Name`, `adminLast_Name`, `adminEmail`, `adminPassword`, `adminStatus`, `tokencode`, `adminProfile`, `uniqueId`, `adminLocation`, `created_at`, `updated_at`) VALUES
-(1, '201800616', 'Web Dev', 'Andrei', 'Manalansan', 'Viscayno', 'andrei.m.viscayno@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'Y', '8127291922e8f2ddfa6b027aa82b2873', 'profile-red.png', '98965b1d82b8023fd6bd4ba823353307', '3', '2022-07-26 01:49:52', '2022-09-17 05:52:37');
+(1, '201800616', 'Web Dev', 'Andrei', 'Manalansan', 'Viscayno', 'andreishania07012000@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'Y', '8127291922e8f2ddfa6b027aa82b2873', 'profile-red.png', '98965b1d82b8023fd6bd4ba823353307', '3', '2022-07-26 01:49:52', '2022-09-24 08:31:08');
 
 -- --------------------------------------------------------
 
@@ -576,7 +553,11 @@ INSERT INTO `tb_logs` (`activityId`, `user`, `email`, `activity`, `date`) VALUES
 (217, 'Student andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-17 07:46:26 PM'),
 (218, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-19 09:19:48 PM'),
 (219, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-19 09:19:58 PM'),
-(220, 'Student andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-19 09:29:18 PM');
+(220, 'Student andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-19 09:29:18 PM'),
+(221, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-24 03:56:14 PM'),
+(222, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-24 04:41:22 PM'),
+(223, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-24 04:41:50 PM'),
+(224, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-24 04:42:01 PM');
 
 -- --------------------------------------------------------
 
@@ -647,12 +628,6 @@ INSERT INTO `user` (`userId`, `employeeId`, `userPosition`, `userFirst_Name`, `u
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `academic_programs`
---
-ALTER TABLE `academic_programs`
-  ADD PRIMARY KEY (`Id`);
 
 --
 -- Indexes for table `admin`
@@ -737,12 +712,6 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `academic_programs`
---
-ALTER TABLE `academic_programs`
-  MODIFY `Id` int(145) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
@@ -806,7 +775,7 @@ ALTER TABLE `system_logo`
 -- AUTO_INCREMENT for table `tb_logs`
 --
 ALTER TABLE `tb_logs`
-  MODIFY `activityId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
+  MODIFY `activityId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=225;
 
 --
 -- AUTO_INCREMENT for table `tb_preregistration`
