@@ -146,27 +146,6 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 					</div>
 					<span class="progress" data-value="30%"></span>
 				</div>
-				<div class="dashboard-card">
-					<div class="head">
-						<div>
-							<?php
-								$pdoQuery = "SELECT * FROM student";
-								$pdoResult1 = $pdoConnect->prepare($pdoQuery);
-								$pdoResult1->execute();
-
-								$count = $pdoResult1->rowCount();
-
-								echo
-								"
-									<h2>$count</h2>
-								";
-							?>
-							<p>Program</p>
-						</div>
-						<i class='bx bxs-book-reader icon' ></i>
-					</div>
-					<span class="progress" data-value="80%"></span>
-				</div>
 			</div>
 			<div class="data">
 				<div class="content-data">

@@ -97,7 +97,10 @@ $updated_at  = $admin_profile["updated_at"];
 				<li class="divider">|</li>
 				<li><a href="" class="active">Students Data</a></li>
 			</ul>
-
+			<div class="level">
+                <button type="button"><a href="../excel/export-admin-records.php" class="export"><i class='bx bx-export'></i> Export</a></button>
+            </div>
+		
             <section class="data-table">
                 <div class="searchBx">
                     <input type="input" placeholder="search student ID .." class="search" name="search_box" id="search_box"><button class="searchBtn"><i class="bx bx-search icon"></i></button>
@@ -122,6 +125,26 @@ $updated_at  = $admin_profile["updated_at"];
 
 
 	<script>
+
+		// export
+		$('.export').on('click', function(e){
+		e.preventDefault();
+		const href = $(this).attr('href')
+
+				swal({
+				title: "Export?",
+				text: "Export an excel file?",
+				icon: "info",
+				buttons: true,
+				dangerMode: true,
+			})
+			.then((willSignout) => {
+				if (willSignout) {
+				document.location.href = href;
+				}
+			});
+		})
+
 
 		// Signout
 		$('.btn-signout').on('click', function(e){

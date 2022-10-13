@@ -297,6 +297,12 @@ if(isset($_POST['scan'])){
                                 <img src="../../src/img/QR-scan3.gif" alt="scan-qr" class="qrscan_icon">
                                 <input type="text" name="scan" id="scanqr" readonly="" class="qrcode">  
                             </form>
+							<div class="camera">
+								<input autocomplete="off" checked="" name="options" type="radio"  value="1" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input autocomplete="off" name="options" type="radio"  value="2" >
+
+								
+							</div>
                         </div>
 					</div>
 					
@@ -465,15 +471,15 @@ if(isset($_POST['scan'])){
 		
 					if(cameras.length>0){
 		
-					scanner.start(cameras[0]);
+					scanner.start(cameras[1]);
 		
 					$('[name="options"]').on('change',function(){
 		
 					if($(this).val()==1){
 		
-						if(cameras[0]!=""){
+						if(cameras[1]!=""){
 		
-						scanner.start(cameras[0]);
+						scanner.start(cameras[1]);
 		
 						}else{
 		
@@ -483,13 +489,13 @@ if(isset($_POST['scan'])){
 		
 					}else if($(this).val()==2){
 		
-						if(cameras[1]!=""){
+						if(cameras[0]!=""){
 		
-						scanner.start(cameras[1]);
+						scanner.start(cameras[0]);
 		
 						}else{
 		
-						alert('No Back camera found!');
+							alert('No Back camera found!');
 		
 						}
 		

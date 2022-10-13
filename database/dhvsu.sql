@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2022 at 05:22 AM
+-- Generation Time: Sep 22, 2022 at 02:07 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `dhvsu`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `academic_programs`
+--
+
+CREATE TABLE `academic_programs` (
+  `Id` int(145) NOT NULL,
+  `programID` varchar(145) DEFAULT NULL,
+  `programs` varchar(145) DEFAULT NULL,
+  `acronym` varchar(145) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `academic_programs`
+--
+
+INSERT INTO `academic_programs` (`Id`, `programID`, `programs`, `acronym`, `created_at`, `updated_at`) VALUES
+(1, '80874241', 'Science, Technology, Engineering, and Mathematics', 'STEM', '2022-07-11 13:31:34', NULL),
+(2, '94374304', 'Tech-Voc Track', 'TVL', '2022-07-12 00:03:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -50,7 +73,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`userId`, `employeeId`, `adminPosition`, `adminFirst_Name`, `adminMiddle_Name`, `adminLast_Name`, `adminEmail`, `adminPassword`, `adminStatus`, `tokencode`, `adminProfile`, `uniqueId`, `adminLocation`, `created_at`, `updated_at`) VALUES
-(1, '201800616', 'Web Dev', 'Juan', 'Santos', 'Datu', 'andreishania07012000@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'Y', '8127291922e8f2ddfa6b027aa82b2873', 'profile-red.png', '98965b1d82b8023fd6bd4ba823353307', '3', '2022-07-26 01:49:52', '2022-10-06 13:28:01');
+(1, '201800616', 'Web Dev', 'Andrei', 'Manalansan', 'Viscayno', 'andrei.m.viscayno@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'Y', '8127291922e8f2ddfa6b027aa82b2873', 'profile-red.png', '98965b1d82b8023fd6bd4ba823353307', '3', '2022-07-26 01:49:52', '2022-09-17 05:52:37');
 
 -- --------------------------------------------------------
 
@@ -158,7 +181,7 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`userId`, `studentId`, `first_name`, `middle_name`, `last_name`, `sex`, `birth_date`, `age`, `place_of_birth`, `civil_status`, `nationality`, `religion`, `phone_number`, `email`, `password`, `province`, `city`, `barangay`, `emergency_contact_person`, `emergency_address`, `emergency_mobile_number`, `qrcode`, `status`, `tokencode`, `profile`, `created_at`, `updated_at`) VALUES
-(7, '2018006164', 'Andrei', 'Manalansan', 'Viscayno', 'Male', '2000-01-07', '22', 'Lubao, Pampanga', 'Single', 'Philippines', 'Roman Catholic', '9776621929', 'andreishania07012000@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'Bataan', 'Hermosa', 'Saba', 'Nolita Viscayno', 'Saba, Hermosa, Bataan', '9776621929', '672b0479d1ae67bbcf9b2ac09c9c2ae6', 'Y', 'b3c2dc375edf8a69d45bcbeac8f805a5', NULL, '2022-07-23 14:22:44', '2022-10-03 13:15:13'),
+(7, '2018006164', 'Andrei', 'Manalansan', 'Viscayno', 'Male', '2000-01-07', '22', 'Lubao, Pampanga', 'Single', 'Philippines', 'Roman Catholic', '9776621929', 'andreishania07012000@gmail.com', NULL, 'Bataan', 'Hermosa', 'Saba', 'Nolita Viscayno', 'Saba, Hermosa, Bataan', '9776621929', '672b0479d1ae67bbcf9b2ac09c9c2ae6', 'N', 'b3c2dc375edf8a69d45bcbeac8f805a5', NULL, '2022-07-23 14:22:44', '2022-09-17 06:50:05'),
 (8, '2108006163', 'Shania', 'Manalansan', 'Viscayno', 'Female', '2000-01-07', '22', 'Lubao, Pampanga', 'Single', 'Philippines', 'Roman Catholic', '9776621929', 'andrei@gmail.com', NULL, 'Bataan', 'Hermosa', 'Saba', 'Andrei Viscayno', 'Saba, Hermosa, Bataan', '9776621929', '68a440a438b99e53e1dc8228c8ea5143', 'N', 'b3c2dc375edf8a69d45bcbeac2f805a5', NULL, '2022-07-26 00:55:11', '2022-09-17 06:50:10'),
 (9, '2018006164', 'Andrei', 'Manalansan', 'Viscayno', 'Female', '2000-01-07', '22', 'lubao', 'Single', 'Philippines', 'Roman Catholic', '9776621929', 'andrei.m.viscayno@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'Bataan', 'Hermosa', 'Saba', '', '', '', 'Andrei', 'Y', '7b70c56407e84bdc56d82439bbdab7ad', 'profile-red.png', '2022-09-17 10:59:06', '2022-09-19 13:29:02');
 
@@ -270,7 +293,7 @@ CREATE TABLE `superadmin` (
 --
 
 INSERT INTO `superadmin` (`superadminId`, `name`, `email`, `password`, `tokencode`, `profile`, `created_at`, `updated_at`) VALUES
-(1, 'Andrei Viscayno', 'andreishania07012000@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'cf3d41ef87dbd96fe6b963af1eb9c0f6', 'DHVSU_logo.png', '2022-07-03 00:09:13', '2022-10-03 12:44:50');
+(1, 'Andrei Viscayno', 'andrei.m.viscayno@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'cf3d41ef87dbd96fe6b963af1eb9c0f6', 'DHVSU_logo.png', '2022-07-03 00:09:13', '2022-08-24 12:02:11');
 
 -- --------------------------------------------------------
 
@@ -553,19 +576,7 @@ INSERT INTO `tb_logs` (`activityId`, `user`, `email`, `activity`, `date`) VALUES
 (217, 'Student andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-17 07:46:26 PM'),
 (218, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-19 09:19:48 PM'),
 (219, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-19 09:19:58 PM'),
-(220, 'Student andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-19 09:29:18 PM'),
-(221, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-24 03:56:14 PM'),
-(222, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-24 04:41:22 PM'),
-(223, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-24 04:41:50 PM'),
-(224, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-24 04:42:01 PM'),
-(225, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-10-02 10:15:01 PM'),
-(226, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-10-02 10:20:12 PM'),
-(227, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-10-02 10:21:21 PM'),
-(228, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-10-02 10:24:38 PM'),
-(229, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-10-02 10:25:03 PM'),
-(230, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-10-03 08:45:39 PM'),
-(231, 'Superadmin andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-10-03 08:45:46 PM'),
-(232, 'Student andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-10-03 09:15:33 PM');
+(220, 'Student andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-19 09:29:18 PM');
 
 -- --------------------------------------------------------
 
@@ -631,11 +642,17 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userId`, `employeeId`, `userPosition`, `userFirst_Name`, `userMiddle_Name`, `userLast_Name`, `userPhone_Number`, `userEmail`, `userPassword`, `userStatus`, `tokencode`, `userProfile`, `created_at`, `updated_at`) VALUES
-(197, '2o2458285824582', 'Web Dev', 'Andrei', 'Manalansan', 'Viscayno', '9776621929', 'andreishania07012000@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'Y', 'b3c2dc375edf8a69d45bcbeac8f805a5', 'coe_logo512px.png', '2022-07-05 11:39:33', '2022-10-03 12:44:26');
+(197, '2o2458285824582', 'Web Dev', 'Andrei', 'Manalansan', 'Viscayno', '9776621929', 'andreishania07012000@gmail.com', '24b35e91f6650c460b66bceaa1590664', 'Y', 'b3c2dc375edf8a69d45bcbeac8f805a5', 'coe_logo512px.png', '2022-07-05 11:39:33', '2022-07-12 08:00:26');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `academic_programs`
+--
+ALTER TABLE `academic_programs`
+  ADD PRIMARY KEY (`Id`);
 
 --
 -- Indexes for table `admin`
@@ -720,6 +737,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `academic_programs`
+--
+ALTER TABLE `academic_programs`
+  MODIFY `Id` int(145) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
@@ -783,7 +806,7 @@ ALTER TABLE `system_logo`
 -- AUTO_INCREMENT for table `tb_logs`
 --
 ALTER TABLE `tb_logs`
-  MODIFY `activityId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=233;
+  MODIFY `activityId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
 
 --
 -- AUTO_INCREMENT for table `tb_preregistration`
