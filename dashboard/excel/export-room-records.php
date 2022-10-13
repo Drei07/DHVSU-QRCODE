@@ -58,7 +58,7 @@ $sheet = $spreadsheet->getSheetByName('front')
 ;
 
 
-
+ob_end_clean();
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment;filename="'.$location["location_name"].'-student-attendance-'.date("Y-m-d").'.xlsx"');
 
