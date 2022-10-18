@@ -36,13 +36,13 @@ else
 }
 
 $query = "
-SELECT * FROM admin 
+SELECT * FROM admin WHERE account_status = :account_status
 ";
 $output = '';
 if($_POST['query'] != '')
 {
   $query .= '
-  WHERE employeeId LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
+  AND employeeId LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
   OR adminFirst_Name LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
   OR adminMiddle_Name LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
   OR adminLast_Name LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
@@ -57,11 +57,11 @@ $query .= 'ORDER BY userId DESC ';
 $filter_query = $query . 'LIMIT '.$start.', '.$limit.'';
 
 $statement = $pdoConnect->prepare($query);
-$statement->execute();
+$statement->execute(array(":account_status" => "active"));
 $total_data = $statement->rowCount();
 
 $statement = $pdoConnect->prepare($filter_query);
-$statement->execute();
+$statement->execute(array(":account_status" => "active"));
 $total_filter_data = $statement->rowCount();
 
 if($total_data > 0)

@@ -11,16 +11,24 @@ if(!$superadmin_home->is_logged_in())
 }
 
 
+    $userId = $_GET["id"];
 
-    $pdoQuery = "DELETE FROM student where userId =" . $_GET['id'];
+
+    $pdoQuery = "UPDATE student SET account_status = :account_status WHERE userId=:userId";
     $pdoResult = $pdoConnect->prepare($pdoQuery);
-    $pdoResult->execute();
+    $pdoExec = $pdoResult->execute(
+    array
+    ( 
+    ":account_status"      => "disabled",
+    ":userId"                =>$userId
+    )
+    );
 
-        $_SESSION['status_title'] = "success!";
-        $_SESSION['status'] = "Student account successfully deleted";
-        $_SESSION['status_code'] = "success";
-        $_SESSION['status_timer'] = 100000;
-        header('Location: ../enrolled-students-data');
-        $pdoConnect = null;
+    $_SESSION['status_title'] = "Success!";
+    $_SESSION['status'] = "Student has succesfully removed";
+    $_SESSION['status_code'] = "success";
+    $_SESSION['status_timer'] = 40000;
+    header("Location: ../enrolled-students-data");
+
 
 ?>

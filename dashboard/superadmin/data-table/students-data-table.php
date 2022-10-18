@@ -36,7 +36,7 @@ else
 }
 
 $query = "
-SELECT * FROM student 
+SELECT * FROM student WHERE account_status = :account_status
 ";
 $output = '';
 if($_POST['query'] != '')
@@ -51,11 +51,11 @@ $query .= 'ORDER BY userId DESC ';
 $filter_query = $query . 'LIMIT '.$start.', '.$limit.'';
 
 $statement = $pdoConnect->prepare($query);
-$statement->execute();
+$statement->execute(array(":account_status" => "active"));
 $total_data = $statement->rowCount();
 
 $statement = $pdoConnect->prepare($filter_query);
-$statement->execute();
+$statement->execute(array(":account_status" => "active"));
 $total_filter_data = $statement->rowCount();
 
 if($total_data > 0)

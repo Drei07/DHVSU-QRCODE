@@ -11,16 +11,24 @@ if(!$superadmin_home->is_logged_in())
 }
 
 
+    $userId = $_GET["Id"];
 
-    $pdoQuery = "DELETE FROM admin where userId =" . $_GET['Id'];
+
+    $pdoQuery = "UPDATE admin SET account_status = :account_status WHERE userId=:userId";
     $pdoResult = $pdoConnect->prepare($pdoQuery);
-    $pdoResult->execute();
+    $pdoExec = $pdoResult->execute(
+    array
+    ( 
+    ":account_status"      => "disabled",
+    ":userId"                =>$userId
+    )
+    );
 
-        $_SESSION['status_title'] = "success!";
-        $_SESSION['status'] = "Admin account successfully deleted";
-        $_SESSION['status_code'] = "success";
-        $_SESSION['status_timer'] = 100000;
-        header('Location: ../admin-data');
-        $pdoConnect = null;
+    $_SESSION['status_title'] = "Success!";
+    $_SESSION['status'] = "Admin has succesfully removed";
+    $_SESSION['status_code'] = "success";
+    $_SESSION['status_timer'] = 40000;
+    header("Location: ../admin-data");
+
 
 ?>

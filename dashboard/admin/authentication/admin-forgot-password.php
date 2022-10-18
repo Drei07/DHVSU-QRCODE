@@ -1,5 +1,13 @@
 <?php
 require_once 'admin-class.php';
+
+//URL lIVE
+$main_url = "https://qsmartattendance.tech";
+
+// localhost
+//URL
+// $main_url = "http://localhost/DHVSU-QRCODE";
+
 $admin = new ADMIN();
 
 if($admin->is_logged_in()!="")
@@ -26,7 +34,7 @@ if(isset($_POST['btn-forgot-password']))
        <br /><br />
        Click Following Link To Reset Your Password 
        <br /><br />
-       <a href='https://localhost/QRCODE/dashboard/admin/authentication/admin-reset-password?id=$id&code=$code'>click here to reset your password</a>
+       <a href='$main_url/dashboard/admin/authentication/admin-reset-password?id=$id&code=$code'>click here to reset your password</a>
        <br /><br />
        thank you :)
        ";

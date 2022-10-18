@@ -1,6 +1,13 @@
 <?php
 require_once '../../admin/authentication/admin-class.php';
 
+//URL lIVE
+$main_url = "https://qsmartattendance.tech";
+
+// localhost
+//URL
+// $main_url = "http://localhost/DHVSU-QRCODE";
+
 $reg_admin = new ADMIN();
 
 if(isset($_POST['btn-register'])) {
@@ -50,7 +57,7 @@ if(isset($_POST['btn-register'])) {
             Email:<br />$email
             Password:<br />$upass
             <br /><br />
-            <a href='https://localhost/QRCODE/public/admin/verify?id=$id&code=$tokencode'>Click HERE to Verify your Account!</a>
+            <a href='$main_url/public/admin/verify?id=$id&code=$tokencode'>Click HERE to Verify your Account!</a>
             <br /><br />
             Thanks,";
             

@@ -1,5 +1,13 @@
 <?php
 require_once 'user-class.php';
+
+//URL lIVE
+$main_url = "https://qsmartattendance.tech";
+
+// localhost
+//URL
+// $main_url = "http://localhost/DHVSU-QRCODE";
+
 $user = new USER();
 
 if($user->is_logged_in()!="")
@@ -26,7 +34,7 @@ if(isset($_POST['btn-forgot-password']))
        <br /><br />
        Click Following Link To Reset Your Password 
        <br /><br />
-       <a href='https://localhost/QRCODE/dashboard/user/authentication/user-reset-password?id=$id&code=$code'>click here to reset your password</a>
+       <a href='$main_url/dashboard/user/authentication/user-reset-password?id=$id&code=$code'>click here to reset your password</a>
        <br /><br />
        thank you :)
        ";
