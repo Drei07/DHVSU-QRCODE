@@ -15,7 +15,6 @@ $stmt = $superadmin_home->runQuery("SELECT * FROM superadmin WHERE superadminId=
 $stmt->execute(array(":uid"=>$_SESSION['superadminSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,9 +24,9 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 	<link rel="shortcut icon" href="../../src/img/<?php echo $logo ?>">
 	<link rel="stylesheet" href="../../src/node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../src/node_modules/boxicons/css/boxicons.min.css">
-	<link rel="stylesheet" href="../../src/node_modules/aos/dist/aos.css" />
+	<link rel="stylesheet" href="../../src/node_modules/aos/dist/aos.css">
     <link rel="stylesheet" href="../../src/css/admin.css?v=<?php echo time(); ?>">
-	<title>Add Rooms    </title>
+	<title>Audit Trail</title>
 </head>
 <body>
 
@@ -43,7 +42,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 			<li>
 				<a href="#"><i class='bx bxs-user-pin icon' ></i> Students <i class='bx bx-chevron-right icon-right' ></i></a>
 				<ul class="side-dropdown">
-					<li><a href="enrolled-students-data">Data</a></li>
+					<li><a href="">Data</a></li>
 					<li><a href="add-students">Add Students</a></li>
 				</ul>
 			</li>
@@ -61,11 +60,10 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 				<a href="#"><i class='bx bx-current-location icon' ></i>Room<i class='bx bx-chevron-right icon-right' ></i></a>
 				<ul class="side-dropdown">
 					<li><a href="room-list">List</a></li>
-                    <li><a href="">Add Room</a></li>
+                    <li><a href="add-room">Add Room</a></li>
 				</ul>
 			</li>
 		</ul>
-
 	</section>
 	<!-- SIDEBAR -->
 
@@ -100,39 +98,27 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 		<!-- MAIN -->
 		<main>
-			<h1 class="title">Add Room</h1>
+			<h1 class="title">Audit Trail</h1>
             <ul class="breadcrumbs">
 				<li><a href="home" >Home</a></li>
 				<li class="divider">|</li>
-				<li><a href="" class="active">Add Room</a></li>
+				<li><a href="" class="active">Audit Trail</a></li>
 			</ul>
-            <section class="data-form">
-				<div class="header"></div>
-				<div class="registration">
-					<form action="controller/add-room-controller.php" method="POST" class="row gx-5 needs-validation" name="form" onsubmit="return validate()"  novalidate style="overflow: hidden;">
-						<div class="row gx-5 needs-validation">
 
-							<div class="col-md-12">
-								<label for="acdemic" class="form-label">Room<span> *</span></label>
-								<input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" autocapitalize="on"  autocomplete="off" name="room" id="room" required>
-								<div class="invalid-feedback">
-								Please provide a Room.
-								</div>
-							</div>
-
-						</div>
-
-						<div class="addBtn">
-							<button type="submit" class="btn-danger" name="btn-register" id="btn-register" onclick="return IsEmpty(); sexEmpty();">Add</button>
-						</div>
-					</form>
+            <section class="data-table">
+                <div class="searchBx">
+                    <input type="input" placeholder="search student ID .." class="search" name="search_box" id="search_box"><button class="searchBtn"><i class="bx bx-search icon"></i></button>
                 </div>
+
+                <div class="table">
+                <div id="dynamic_content">
+                </div>
+
             </section>
 		</main>
 		<!-- MAIN -->
 	</section>
 	<!-- END NAVBAR -->
-
 
 	<script src="../../src/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="../../src/node_modules/sweetalert/dist/sweetalert.min.js"></script>
@@ -140,24 +126,9 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 	<script src="../../src/js/dashboard.js"></script>
     <script src="../../src/js/loader.js"></script>
 	
+
+
 	<script>
-
-		// Form
-		(function () {
-			'use strict'
-			var forms = document.querySelectorAll('.needs-validation')
-			Array.prototype.slice.call(forms)
-			.forEach(function (form) {
-				form.addEventListener('submit', function (event) {
-				if (!form.checkValidity()) {
-					event.preventDefault()
-					event.stopPropagation()
-				}
-
-				form.classList.add('was-validated')
-				}, false)
-			})
-		})();
 
 		// Signout
 		$('.btn-signout').on('click', function(e){
@@ -178,6 +149,36 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 			});
 		})
 
+        //live search---------------------------------------------------------------------------------------//
+        $(document).ready(function(){
+
+        load_data(1);
+
+        function load_data(page, query = '')
+        {
+        $.ajax({
+            url:"data-table/audit-trail-data-table.php",
+            method:"POST",
+            data:{page:page, query:query},
+            success:function(data)
+            {
+            $('#dynamic_content').html(data);
+            }
+        });
+        }
+
+        $(document).on('click', '.page-link', function(){
+        var page = $(this).data('page_number');
+        var query = $('#search_box').val();
+        load_data(page, query);
+        });
+
+        $('#search_box').keyup(function(){
+        var query = $('#search_box').val();
+        load_data(1, query);
+        });
+
+        });
 
 	</script>
 

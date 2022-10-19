@@ -62,6 +62,7 @@ $location_name     = $location["location_name"];
 					<li><a href="add-admin">Add Admin</a></li>
 				</ul>
 			</li>
+			<li><a href="audit-trail"><i class='bx bxl-blogger icon'></i> Audit Trail</a></li>
 
 			<li class="divider" data-text="room">room</li>
 			<li>

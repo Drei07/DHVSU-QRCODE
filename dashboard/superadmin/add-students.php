@@ -54,7 +54,8 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 					<li><a href="add-admin">Add Admin</a></li>
 				</ul>
 			</li>
-			
+			<li><a href="audit-trail"><i class='bx bxl-blogger icon'></i> Audit Trail</a></li>
+
 			<li class="divider" data-text="room">room</li>
 			<li>
 				<a href="#"><i class='bx bx-current-location icon' ></i>Room<i class='bx bx-chevron-right icon-right' ></i></a>
