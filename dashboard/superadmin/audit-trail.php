@@ -107,7 +107,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             <section class="data-table">
                 <div class="searchBx">
-                    <input type="input" placeholder="search student ID .." class="search" name="search_box" id="search_box"><button class="searchBtn"><i class="bx bx-search icon"></i></button>
+                    <input type="input" placeholder="search Email .." class="search" name="search_box" id="search_box"><button class="searchBtn"><i class="bx bx-search icon"></i></button>
                 </div>
 
                 <div class="table">
