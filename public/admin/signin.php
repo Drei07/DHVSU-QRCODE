@@ -14,7 +14,7 @@ include_once '../../dashboard/superadmin/controller/select-settings-coniguration
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://www.google.com/recaptcha/api.js?render=<?php echo $SiteKEY ?>"></script>
     <link rel="stylesheet" href="../../src/css/login.css?v=<?php echo time(); ?>">
-    <title>Admin Sign In</title>
+    <title>Admin | Sign In</title>
 </head>
 <body class="my-login-page">
 	<section class="h-100">

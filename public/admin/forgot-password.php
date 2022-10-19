@@ -9,7 +9,7 @@ include_once '../../dashboard/superadmin/controller/select-settings-coniguration
 	<meta charset="utf-8">
 	<meta name="author" content="Kodinger">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>Forgot Password?</title>
+	<title>Admin | Forgot Password?</title>
 	<link rel="shortcut icon" href="../../src/img/<?php echo $logo ?>">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../../src/css/login.css?v=<?php echo time(); ?>">

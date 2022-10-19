@@ -2,6 +2,10 @@ html,body {
 	height: 100%;
 }
 
+/* RECAPTCHA */
+.grecaptcha-badge { 
+    visibility: hidden;
+}
 
 .swal-text{
 	text-align: center;
