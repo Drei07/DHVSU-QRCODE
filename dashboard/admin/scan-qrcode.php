@@ -471,7 +471,7 @@ if(isset($_POST['scan'])){
 		
 					if(cameras.length>0){
 		
-					scanner.start(cameras[0]);
+					scanner.start(cameras[1]);
 		
 					$('[name="options"]').on('change',function(){
 		
