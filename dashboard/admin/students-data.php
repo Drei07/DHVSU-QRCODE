@@ -98,7 +98,7 @@ $updated_at  = $admin_profile["updated_at"];
 				<li><a href="" class="active">Students Data</a></li>
 			</ul>
 			<div class="level">
-                <button type="button"><a href="../excel/sample.php" class="export"><i class='bx bx-export'></i> Export</a></button>
+                <button type="button"><a href="../excel/export-student-data.php?id=<?php echo $uniqueID ?>" class="export"><i class='bx bx-export'></i> Export</a></button>
             </div>
 		
             <section class="data-table">
