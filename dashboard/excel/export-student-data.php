@@ -5,15 +5,15 @@ require '../vendor2/autoload.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
-$inputFileName = 'student-attendance.xlsx';
+$inputFileName = 'admin-student-attendance.xlsx';
 $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($inputFileName);
 
-$roomId = 1;
+$roomId = $_GET['id'];;
 $starting_row = 9;
 
-$pdoQuery = "SELECT * FROM student_activity WHERE activity = :activity";
+$pdoQuery = "SELECT * FROM student_activity WHERE employee_ID = :employee_ID";
 $pdoResult = $pdoConnect->prepare($pdoQuery);
-$pdoExec = $pdoResult->execute(array(":activity" => $roomId));
+$pdoExec = $pdoResult->execute(array(":employee_ID" => $roomId));
 
 
 while($room_data = $pdoResult->fetch(PDO::FETCH_ASSOC)){
@@ -42,25 +42,10 @@ while($room_data = $pdoResult->fetch(PDO::FETCH_ASSOC)){
 
 }
 
-$pdoQuery = "SELECT * FROM location WHERE Id = :Id";
-$pdoResult = $pdoConnect->prepare($pdoQuery);
-$pdoExec = $pdoResult->execute(array(":Id" => $roomId));
-$location = $pdoResult->fetch(PDO::FETCH_ASSOC);
-
-
-$location_name = $location["location_name"] . " - STUDENTS RECORDS";
-
-
-$sheet = $spreadsheet->getSheetByName('front')
-    ->setCellValue('J3', $location_name)
-
-
-;
-
 
 ob_end_clean();
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="'.$location["location_name"].'-student-attendance-'.date("Y-m-d").'.xlsx"');
+header('Content-Disposition: attachment;filename="student-attendance-'.date("Y-m-d").'.xlsx"');
 
 $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
 $writer->save('php://output');
