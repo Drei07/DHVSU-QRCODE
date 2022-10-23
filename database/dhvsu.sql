@@ -2,9 +2,9 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 22, 2022 at 02:07 PM
--- Server version: 10.4.24-MariaDB
+-- Host: localhost
+-- Generation Time: Oct 19, 2022 at 02:19 AM
+-- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -20,29 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `dhvsu`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `academic_programs`
---
-
-CREATE TABLE `academic_programs` (
-  `Id` int(145) NOT NULL,
-  `programID` varchar(145) DEFAULT NULL,
-  `programs` varchar(145) DEFAULT NULL,
-  `acronym` varchar(145) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `academic_programs`
---
-
-INSERT INTO `academic_programs` (`Id`, `programID`, `programs`, `acronym`, `created_at`, `updated_at`) VALUES
-(1, '80874241', 'Science, Technology, Engineering, and Mathematics', 'STEM', '2022-07-11 13:31:34', NULL),
-(2, '94374304', 'Tech-Voc Track', 'TVL', '2022-07-12 00:03:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -64,6 +41,7 @@ CREATE TABLE `admin` (
   `adminProfile` varchar(1145) NOT NULL DEFAULT 'profile-red.png',
   `uniqueId` varchar(145) DEFAULT NULL,
   `adminLocation` varchar(145) DEFAULT NULL,
+  `account_status` enum('active','disabled') NOT NULL DEFAULT 'active',
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -72,8 +50,8 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`userId`, `employeeId`, `adminPosition`, `adminFirst_Name`, `adminMiddle_Name`, `adminLast_Name`, `adminEmail`, `adminPassword`, `adminStatus`, `tokencode`, `adminProfile`, `uniqueId`, `adminLocation`, `created_at`, `updated_at`) VALUES
-(1, '201800616', 'Web Dev', 'Andrei', 'Manalansan', 'Viscayno', 'andrei.m.viscayno@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'Y', '8127291922e8f2ddfa6b027aa82b2873', 'profile-red.png', '98965b1d82b8023fd6bd4ba823353307', '3', '2022-07-26 01:49:52', '2022-09-17 05:52:37');
+INSERT INTO `admin` (`userId`, `employeeId`, `adminPosition`, `adminFirst_Name`, `adminMiddle_Name`, `adminLast_Name`, `adminEmail`, `adminPassword`, `adminStatus`, `tokencode`, `adminProfile`, `uniqueId`, `adminLocation`, `account_status`, `created_at`, `updated_at`) VALUES
+(1, '201800616', 'INSTRUCTOR I', 'ARVIN', 'SANTOS', 'DABU', 'qsmartattendance@gmail.com', '42f749ade7f9e195bf475f37a44cafcb', 'Y', '8127291922e8f2ddfa6b027aa82b2873', 'profile-red.png', '98965b1d82b8023fd6bd4ba823353307', '3', 'active', '2022-07-26 01:49:52', '2022-10-18 00:58:11');
 
 -- --------------------------------------------------------
 
@@ -94,7 +72,7 @@ CREATE TABLE `email_config` (
 --
 
 INSERT INTO `email_config` (`Id`, `email`, `password`, `created_at`, `updated_at`) VALUES
-(1, 'andrei.m.viscayno@gmail.com', 'zgyivspimzmjortq', '2022-07-08 04:41:51', '2022-07-08 09:05:03');
+(1, 'qsmartattendance@gmail.com', 'jpnbnhlemrbrevfh', '2022-07-08 04:41:51', '2022-10-18 00:05:01');
 
 -- --------------------------------------------------------
 
@@ -115,7 +93,7 @@ CREATE TABLE `google_recaptcha_api` (
 --
 
 INSERT INTO `google_recaptcha_api` (`Id`, `site_key`, `site_secret_key`, `created_at`, `updated_at`) VALUES
-(1, '6LfeHlkdAAAAABiHm93II8UuYYtIs8WFhSIiWQ-B', '6LfeHlkdAAAAAA3NYvNccc_FqzGi2Y6wiGGCOG1s', '2022-07-08 04:29:37', '2022-07-12 07:14:01');
+(1, '6LdiQZQhAAAAABpaNFtJpgzGpmQv2FwhaqNj2azh', '6LdiQZQhAAAAAByS6pnNjOs9xdYXMrrW2OeTFlrm', '2022-07-08 04:29:37', '2022-10-18 00:05:45');
 
 -- --------------------------------------------------------
 
@@ -172,18 +150,10 @@ CREATE TABLE `student` (
   `status` enum('Y','N') NOT NULL DEFAULT 'N',
   `tokencode` varchar(145) DEFAULT NULL,
   `profile` varchar(145) DEFAULT 'profile-red.png',
+  `account_status` enum('active','disabled') NOT NULL DEFAULT 'active',
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `student`
---
-
-INSERT INTO `student` (`userId`, `studentId`, `first_name`, `middle_name`, `last_name`, `sex`, `birth_date`, `age`, `place_of_birth`, `civil_status`, `nationality`, `religion`, `phone_number`, `email`, `password`, `province`, `city`, `barangay`, `emergency_contact_person`, `emergency_address`, `emergency_mobile_number`, `qrcode`, `status`, `tokencode`, `profile`, `created_at`, `updated_at`) VALUES
-(7, '2018006164', 'Andrei', 'Manalansan', 'Viscayno', 'Male', '2000-01-07', '22', 'Lubao, Pampanga', 'Single', 'Philippines', 'Roman Catholic', '9776621929', 'andreishania07012000@gmail.com', NULL, 'Bataan', 'Hermosa', 'Saba', 'Nolita Viscayno', 'Saba, Hermosa, Bataan', '9776621929', '672b0479d1ae67bbcf9b2ac09c9c2ae6', 'N', 'b3c2dc375edf8a69d45bcbeac8f805a5', NULL, '2022-07-23 14:22:44', '2022-09-17 06:50:05'),
-(8, '2108006163', 'Shania', 'Manalansan', 'Viscayno', 'Female', '2000-01-07', '22', 'Lubao, Pampanga', 'Single', 'Philippines', 'Roman Catholic', '9776621929', 'andrei@gmail.com', NULL, 'Bataan', 'Hermosa', 'Saba', 'Andrei Viscayno', 'Saba, Hermosa, Bataan', '9776621929', '68a440a438b99e53e1dc8228c8ea5143', 'N', 'b3c2dc375edf8a69d45bcbeac2f805a5', NULL, '2022-07-26 00:55:11', '2022-09-17 06:50:10'),
-(9, '2018006164', 'Andrei', 'Manalansan', 'Viscayno', 'Female', '2000-01-07', '22', 'lubao', 'Single', 'Philippines', 'Roman Catholic', '9776621929', 'andrei.m.viscayno@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'Bataan', 'Hermosa', 'Saba', '', '', '', 'Andrei', 'Y', '7b70c56407e84bdc56d82439bbdab7ad', 'profile-red.png', '2022-09-17 10:59:06', '2022-09-19 13:29:02');
 
 -- --------------------------------------------------------
 
@@ -226,7 +196,7 @@ CREATE TABLE `student_activity` (
 --
 
 INSERT INTO `student_activity` (`userId`, `employee_name`, `employee_ID`, `studentId`, `first_name`, `middle_name`, `last_name`, `sex`, `birth_date`, `age`, `place_of_birth`, `civil_status`, `nationality`, `religion`, `phone_number`, `email`, `province`, `city`, `barangay`, `emergency_contact_person`, `emergency_address`, `emergency_mobile_number`, `qrcode`, `activity`, `date`, `created_at`, `updated_at`) VALUES
-(1, 'Viscayno, Andrei', '98965b1d82b8023fd6bd4ba823353307', '2108006163', 'Shania', 'Manalansan', 'Viscayno', 'Female', '2000-01-07', '22', 'Lubao, Pampanga', 'Single', 'Philippines', 'Roman Catholic', '9776621929', 'andrei@gmail.com', 'Bataan', 'Hermosa', 'Saba', 'Andrei Viscayno', 'Saba, Hermosa, Bataan', '9776621929', '68a440a438b99e53e1dc8228c8ea5143', '3', '2022-09-17', '2022-09-17 06:15:25', NULL);
+(1, 'DABU, ARVIN', '98965b1d82b8023fd6bd4ba823353307', '2019989741', 'Tracy Anne', 'Lagman', 'Dizon', 'Female', '2001-03-09', '21', 'Guagua Pampanga', 'Single', 'Philippines', 'Roman Catholic', '9076455712', 'dizontracyanne@gmail.com', 'Pampanga', 'Lubao', 'Concepcion', 'cecil dizon', 'concepcion lubao pampanga', '0946911099', 'e859d1a7943b63c0c3fedcab272104a4', '3', '2022-10-18', '2022-10-18 01:27:03', NULL);
 
 -- --------------------------------------------------------
 
@@ -269,7 +239,7 @@ CREATE TABLE `student_activity_98965b1d82b8023fd6bd4ba823353307` (
 --
 
 INSERT INTO `student_activity_98965b1d82b8023fd6bd4ba823353307` (`userId`, `employee_name`, `employee_ID`, `studentId`, `first_name`, `middle_name`, `last_name`, `sex`, `birth_date`, `age`, `place_of_birth`, `civil_status`, `nationality`, `religion`, `phone_number`, `email`, `province`, `city`, `barangay`, `emergency_contact_person`, `emergency_address`, `emergency_mobile_number`, `qrcode`, `activity`, `date`, `created_at`, `updated_at`) VALUES
-(1, 'Viscayno, Andrei', '98965b1d82b8023fd6bd4ba823353307', '2108006163', 'Shania', 'Manalansan', 'Viscayno', 'Female', '2000-01-07', '22', 'Lubao, Pampanga', 'Single', 'Philippines', 'Roman Catholic', '9776621929', 'andrei@gmail.com', 'Bataan', 'Hermosa', 'Saba', 'Andrei Viscayno', 'Saba, Hermosa, Bataan', '9776621929', '68a440a438b99e53e1dc8228c8ea5143', '3', '2022-09-17', '2022-09-17 06:15:25', NULL);
+(1, 'DABU, ARVIN', '98965b1d82b8023fd6bd4ba823353307', '2019989741', 'Tracy Anne', 'Lagman', 'Dizon', 'Female', '2001-03-09', '21', 'Guagua Pampanga', 'Single', 'Philippines', 'Roman Catholic', '9076455712', 'dizontracyanne@gmail.com', 'Pampanga', 'Lubao', 'Concepcion', 'cecil dizon', 'concepcion lubao pampanga', '0946911099', 'e859d1a7943b63c0c3fedcab272104a4', '3', '2022-10-18', '2022-10-18 01:27:03', NULL);
 
 -- --------------------------------------------------------
 
@@ -293,7 +263,7 @@ CREATE TABLE `superadmin` (
 --
 
 INSERT INTO `superadmin` (`superadminId`, `name`, `email`, `password`, `tokencode`, `profile`, `created_at`, `updated_at`) VALUES
-(1, 'Andrei Viscayno', 'andrei.m.viscayno@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'cf3d41ef87dbd96fe6b963af1eb9c0f6', 'DHVSU_logo.png', '2022-07-03 00:09:13', '2022-08-24 12:02:11');
+(1, 'JUAN, SANTOS', 'qsmartattendance@gmail.com', '42f749ade7f9e195bf475f37a44cafcb', 'cf3d41ef87dbd96fe6b963af1eb9c0f6', 'DHVSU_logo.png', '2022-07-03 00:09:13', '2022-10-19 00:04:09');
 
 -- --------------------------------------------------------
 
@@ -316,7 +286,7 @@ CREATE TABLE `system_config` (
 --
 
 INSERT INTO `system_config` (`Id`, `system_name`, `system_number`, `system_email`, `copy_right`, `created_at`, `updated_at`) VALUES
-(1, 'DHVSU SSAS', '9776621929', 'andrei.m.viscayno@gmail.com', 'Copyright 2022 AMV. All right reserved', '2022-07-08 12:38:28', '2022-07-23 15:12:50');
+(1, 'DHVSU SMART ATTENDANCE SYSTEM', '9776621929', 'qsmartattendance@gmail.com', 'Copyright 2022 DHVSU SMART ATTENDANCE SYSTEM. All right reserved', '2022-07-08 12:38:28', '2022-10-18 00:06:41');
 
 -- --------------------------------------------------------
 
@@ -576,83 +546,17 @@ INSERT INTO `tb_logs` (`activityId`, `user`, `email`, `activity`, `date`) VALUES
 (217, 'Student andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-17 07:46:26 PM'),
 (218, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-19 09:19:48 PM'),
 (219, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-19 09:19:58 PM'),
-(220, 'Student andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-19 09:29:18 PM');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tb_preregistration`
---
-
-CREATE TABLE `tb_preregistration` (
-  `userId` int(11) NOT NULL,
-  `userFirst_name` varchar(100) NOT NULL,
-  `userMiddle_name` varchar(100) NOT NULL,
-  `userLast_name` varchar(100) NOT NULL,
-  `userPhone_number` varchar(100) NOT NULL COMMENT '+63',
-  `userBirth_date` varchar(100) NOT NULL,
-  `userAge` varchar(100) NOT NULL,
-  `userSex` varchar(123) NOT NULL,
-  `house_number` varchar(145) NOT NULL,
-  `street` varchar(100) NOT NULL,
-  `barangay` varchar(100) NOT NULL,
-  `municipality` varchar(100) NOT NULL,
-  `province` varchar(100) NOT NULL,
-  `userEmail` varchar(100) NOT NULL,
-  `userPassword` varchar(100) NOT NULL,
-  `userStatus` enum('Y','N') NOT NULL DEFAULT 'N',
-  `tokencode` varchar(100) NOT NULL,
-  `qrcode` varchar(125) NOT NULL,
-  `Date` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tb_preregistration`
---
-
-INSERT INTO `tb_preregistration` (`userId`, `userFirst_name`, `userMiddle_name`, `userLast_name`, `userPhone_number`, `userBirth_date`, `userAge`, `userSex`, `house_number`, `street`, `barangay`, `municipality`, `province`, `userEmail`, `userPassword`, `userStatus`, `tokencode`, `qrcode`, `Date`) VALUES
-(3, 'Shania', 'Manalansan', 'Viscayno', '9776621929', '2000-07-01', '21', 'Male     ', '1872', 'Centro', 'San Agustin    ', 'Lubao', 'Pampanga', 'andrei.m.viscayno@gmail.com', '24b35e91f6650c460b66bceaa1590664', 'Y', '1166af07d59364ce3c5a7f54562c9eff', 'dc9e2ef5b25b715e1f3d079d2a7448fb', '2021-11-20 05:01:53'),
-(19, 'Sunny', 'Oban', 'Viscayno', '9776621929', '1976-08-11', '45', 'Male', '', '', 'San Jose Apunan', 'Lubao', 'Pampanga', 'andreihfajj@gmail.com', '24b35e91f6650c460b66bceaa1590664', 'N', '559e220be980ba34f5c289a03b99bc91', '8a0e58f59668a3b1d25ae54e6a5ac30e', '2021-12-07 09:40:57');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `userId` int(255) NOT NULL,
-  `employeeId` varchar(145) DEFAULT NULL,
-  `userPosition` varchar(145) DEFAULT NULL,
-  `userFirst_Name` varchar(145) DEFAULT NULL,
-  `userMiddle_Name` varchar(145) DEFAULT NULL,
-  `userLast_Name` varchar(145) DEFAULT NULL,
-  `userPhone_Number` varchar(145) DEFAULT NULL,
-  `userEmail` varchar(145) DEFAULT NULL,
-  `userPassword` varchar(145) DEFAULT NULL,
-  `userStatus` enum('Y','N') DEFAULT 'N',
-  `tokencode` varchar(145) DEFAULT NULL,
-  `userProfile` varchar(1145) NOT NULL DEFAULT 'profile.png',
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`userId`, `employeeId`, `userPosition`, `userFirst_Name`, `userMiddle_Name`, `userLast_Name`, `userPhone_Number`, `userEmail`, `userPassword`, `userStatus`, `tokencode`, `userProfile`, `created_at`, `updated_at`) VALUES
-(197, '2o2458285824582', 'Web Dev', 'Andrei', 'Manalansan', 'Viscayno', '9776621929', 'andreishania07012000@gmail.com', '24b35e91f6650c460b66bceaa1590664', 'Y', 'b3c2dc375edf8a69d45bcbeac8f805a5', 'coe_logo512px.png', '2022-07-05 11:39:33', '2022-07-12 08:00:26');
+(220, 'Student andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-19 09:29:18 PM'),
+(221, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-10-18 07:57:11 AM'),
+(222, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-10-18 08:07:18 AM'),
+(223, 'Student dizontracyanne@gmail.com', 'dizontracyanne@gmail.com', 'Has successfully signed in', '2022-10-18 09:24:19 AM'),
+(224, 'Customer qsmartattendance@gmail.com', 'qsmartattendance@gmail.com', 'Has successfully signed in', '2022-10-18 09:25:39 AM'),
+(225, 'Customer qsmartattendance@gmail.com', 'qsmartattendance@gmail.com', 'Has successfully signed in', '2022-10-19 08:02:05 AM'),
+(226, 'Superadmin qsmartattendance@gmail.com', 'qsmartattendance@gmail.com', 'Has successfully signed in', '2022-10-19 08:04:28 AM');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `academic_programs`
---
-ALTER TABLE `academic_programs`
-  ADD PRIMARY KEY (`Id`);
 
 --
 -- Indexes for table `admin`
@@ -721,26 +625,8 @@ ALTER TABLE `tb_logs`
   ADD PRIMARY KEY (`activityId`);
 
 --
--- Indexes for table `tb_preregistration`
---
-ALTER TABLE `tb_preregistration`
-  ADD PRIMARY KEY (`userId`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`userId`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `academic_programs`
---
-ALTER TABLE `academic_programs`
-  MODIFY `Id` int(145) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `admin`
@@ -770,7 +656,7 @@ ALTER TABLE `location`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `userId` int(145) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `userId` int(145) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `student_activity`
@@ -806,19 +692,7 @@ ALTER TABLE `system_logo`
 -- AUTO_INCREMENT for table `tb_logs`
 --
 ALTER TABLE `tb_logs`
-  MODIFY `activityId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
-
---
--- AUTO_INCREMENT for table `tb_preregistration`
---
-ALTER TABLE `tb_preregistration`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `userId` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=198;
+  MODIFY `activityId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=227;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
