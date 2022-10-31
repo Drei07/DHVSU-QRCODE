@@ -43,7 +43,7 @@ include_once '../../dashboard/superadmin/controller/select-settings-coniguration
 											Forgot Password?
 										</a>
 									</label>
-									<input id="password" type="password" class="form-control" name="password" required data-eye>
+									<input id="password" type="password" class="form-control" name="password"  required data-eye>
 								    <div class="invalid-feedback">
 								    	Password is required
 							    	</div>
@@ -52,7 +52,7 @@ include_once '../../dashboard/superadmin/controller/select-settings-coniguration
 								<br>
 
 								<div class="form-group m-0">
-									<button type="submit"  id="submit" class="btn btn-danger btn-block" name="btn-signin">
+									<button type="submit"  id="submit" class="btn btn-primary btn-block" name="btn-signin">
 										Sign In
 									</button>
 								</div>

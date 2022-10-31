@@ -17,24 +17,10 @@ if(isset($_POST['btn-register'])) {
     $first_name                 =       trim($_POST['FName']);
     $middle_name                =       trim($_POST['MName']);
     $last_name                  =       trim($_POST['LName']);
-    $sex                        =       trim($_POST['Sex']);
-    $birth_date                 =       trim($_POST['BirthDate']);
-    $age                        =       trim($_POST['Age']);
-    $place_of_birth             =       trim($_POST['PBirth']);
-    $civil_status               =       trim($_POST['CStatus']);
-    $nationality                =       trim($_POST['Nationality']);
-    $religion                   =       trim($_POST['Religion']);
-    $phone_number               =       trim($_POST['PNumber']);
     $email                      =       trim($_POST['Email']);
-    $province                   =       trim($_POST['Province']);
-    $city                       =       trim($_POST['City']);
-    $barangay                   =       trim($_POST['Barangay']);
-    $emergency_contact_person   =       trim($_POST['Emergency_Contact_Person']);
-    $emergency_address          =       trim($_POST['Emergency_Address']);
-    $emergency_mobile_number    =       trim($_POST['Emergency_Mobile_No']);
 
     // Generate QRcode
-    $qrcode                     =       md5(uniqid(rand()));
+    $qrcode                     =       "DHVSU-".(str_pad(mt_rand(1,99999999),8,'0',STR_PAD_LEFT));
     
 
     // Generate Password
@@ -61,7 +47,7 @@ if(isset($_POST['btn-register'])) {
     }
     else
     {
-        if($reg_user->register($studentId,$first_name,$middle_name,$last_name,$sex,$birth_date,$age,$place_of_birth,$civil_status,$nationality,$religion,$phone_number,$email,$upass,$province,$city,$barangay,$emergency_contact_person,$emergency_mobile_number,$emergency_address,$qrcode,$tokencode))
+        if($reg_user->register($studentId,$first_name,$middle_name,$last_name,$email,$upass,$qrcode,$tokencode))
         {   
         $id = $reg_user->lasdID();  
         $key = base64_encode($id);
@@ -72,7 +58,7 @@ if(isset($_POST['btn-register'])) {
             <br /><br />
             Welcome to DHVSU Harmonized Gender and Development Guidelines Monitoring Systems !
             <br /><br />
-            Email:<br />$email
+            Email:<br />$email<br />
             Password:<br />$upass
             <br /><br />
             <a href='$main_url/public/user/verify?id=$id&code=$tokencode'>Click HERE to Verify your Account!</a>

@@ -1,5 +1,7 @@
 <?php
 include_once  __DIR__.'/../../database/dbconfig2.php';
+session_start();
+
 
 require '../vendor2/autoload.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -8,12 +10,15 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 $inputFileName = 'admin-student-attendance.xlsx';
 $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($inputFileName);
 
-$roomId = $_GET['id'];;
+$employeeID = $_GET['id'];;
 $starting_row = 9;
+$month = $_GET['date'];
 
-$pdoQuery = "SELECT * FROM student_activity WHERE employee_ID = :employee_ID";
+$pdoQuery = "SELECT * FROM student_activity WHERE employee_ID = :employee_ID AND MONTH(date) = :date";
 $pdoResult = $pdoConnect->prepare($pdoQuery);
-$pdoExec = $pdoResult->execute(array(":employee_ID" => $roomId));
+$pdoExec = $pdoResult->execute(array(":employee_ID" => $employeeID, ":date" => $month));
+
+if ($pdoResult->rowCount() == 1) {
 
 
 while($room_data = $pdoResult->fetch(PDO::FETCH_ASSOC)){
@@ -43,11 +48,60 @@ while($room_data = $pdoResult->fetch(PDO::FETCH_ASSOC)){
 }
 
 
+    // MONTHS
+    switch ($month) {
+        case '01':
+           $month_name = "January";
+            break;
+        case '02':
+            $month_name = "February";
+            break;
+        case '03':
+            $month_name = "March";
+            break;
+        case '04':
+            $month_name = "April";
+            break;
+        case '05':
+            $month_name = "May";
+            break;
+        case '06':
+            $month_name = "June";
+            break;
+        case '07':
+            $month_name = "July";
+            break;
+        case '08':
+            $month_name = "August";
+            break;
+        case '09':
+            $month_name = "September";
+            break;
+        case '10':
+            $month_name = "October";
+            break;
+        case '11':
+            $month_name = "November";
+            break;
+        case '12':
+            $month_name = "December";
+            break;
+    }
+    
+
+
 ob_end_clean();
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="student-attendance-'.date("Y-m-d").'.xlsx"');
+header('Content-Disposition: attachment;filename="'.$month_name.'-student-attendance-'.date("Y-m-d").'.xlsx"');
 
 $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
 $writer->save('php://output');
+}else {
+    $_SESSION['status_title'] = "Oops!";
+    $_SESSION['status'] = "No records found for this month";
+    $_SESSION['status_code'] = "error";
+    $_SESSION['status_timer'] = 100000;
+    header("Location: ../admin/students-data");
+}
 
 ?>

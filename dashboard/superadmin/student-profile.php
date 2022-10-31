@@ -26,24 +26,11 @@ $studentId                 = $student["studentId"];
 $first_name                 = $student["first_name"];
 $middle_name                = $student["middle_name"];
 $last_name                  = $student["last_name"];
-$sex                        = $student["sex"];
-$birth_date                 = $student["birth_date"];
-$age                        = $student["age"];
-$place_of_birth             = $student["place_of_birth"];
-$civil_status               = $student["civil_status"];
-$nationality                = $student["nationality"];
-$religion                   = $student["religion"];
-$phone_number               = $student["phone_number"];
 $email                      = $student["email"];
-$province                   = $student["province"];
-$city                       = $student["city"];
-$barangay                   = $student["barangay"];
-$emergency_contact_person   = $student["emergency_contact_person"];
-$emergency_address          = $student["emergency_address"];
-$emergency_mobile_number           = $student["emergency_mobile_number"];
-$qrcode                   = $student["qrcode"];
+$qrcode                   	= $student["qrcode"];
 $created_at                 = $student["created_at"];
 $updated_at                 = $student["updated_at"];
+
 
 
 ?>
@@ -196,106 +183,6 @@ $updated_at                 = $student["updated_at"];
 									Please provide a Last Name.
 									</div>
 								</div>
-
-								<div class="col-md-6">
-									<label for="sex" class="form-label">Sex<span> *</span></label>
-									<select class="form-select form-control"  name="Sex"  autocapitalize="on" maxlength="6" autocomplete="off" id="sex" required>
-									<option selected value="<?php echo $sex ?>"><?php echo $sex ?></option>
-									<option value="Male">Male</option>
-									<option value="Female ">Female</option>
-									</select>
-									<div class="invalid-feedback">
-										Please select a valid Sex.
-									</div>
-								</div>
-
-								<div class="col-md-6">
-									<label for="birthdate" class="form-label">Birth Date<span> *</span></label>
-									<input type="date" class="form-control" value="<?php echo $birth_date ?>" autocapitalize="off" autocomplete="off" name="BirthDate" id="birthdate" maxlength="10" pattern="^[a-zA-Z0-9]+@gmail\.com$"  required placeholder="Ex: mm/dd/yyyy" onkeyup="getAgeVal(0)" onblur="getAgeVal(0);">
-									<div class="invalid-feedback">
-									Please provide a Birth Date.
-									</div>
-								</div>
-
-								<div class="col-md-6" style="display: none;">
-									<label for="age" class="form-label">Age<span style="font-size:9px; color:red;">( auto-generated )</span></label>
-									<input type="number" class="form-control" value="<?php echo $age ?>" autocapitalize="off" autocomplete="off"  name="Age" id="age" required >
-									<div class="invalid-feedback">
-									Please provide your Age.
-									</div>
-								</div>
-
-								<div class="col-md-6">
-									<label for="Pbirth" class="form-label">Place Of Birth</label>
-									<input type="text" class="form-control" value="<?php echo $place_of_birth ?>" autocapitalize="on" maxlength="20" autocomplete="off" name="PBirth" id="Pbirth" >
-									<div class="invalid-feedback">
-									Please provide a Place of Birth.
-									</div>
-								</div>
-
-								<div class="col-md-6">
-									<label for="CivilStatus" class="form-label">Civil Status<span> *</span></label>
-									<select class="form-select form-control"  name="CStatus"  autocapitalize="on" maxlength="6" autocomplete="off" id="CivilStatus" required>
-									<option selected value="<?php echo $civil_status ?>" ><?php echo $civil_status ?></option>
-									<option value="Single">Single</option>
-									<option value="Married">Married</option>
-									<option value="Seperated">Seperated</option>
-									<option value="Widow/Widower">Widow/Widower</option>
-									<option value="Anulled">Anulled</option>
-									<option value="Solo Parent">Solo Parent</option>
-									</select>
-									<div class="invalid-feedback">
-										Please select a valid Civil Status.
-									</div>
-								</div>
-
-								<div class="col-md-6">
-									<label for="nationality" class="form-label">Nationality<span> *</span></label>
-									<input type="text" class="form-control country-select" value="<?php echo $nationality ?>" autocapitalize="on" maxlength="20" autocomplete="off" name="Nationality" id="nationality"  required>
-									<div class="invalid-feedback">
-									Please provide a Nationality.
-									</div>
-								</div>
-
-								<div class="col-md-6">
-									<label for="religion" class="form-label">Religion<span> *</span></label>
-									<select class="form-select form-control"  name="Religion"  autocapitalize="on" maxlength="6" autocomplete="off" id="religion" required>
-									<option selected value="<?php echo $religion ?>"><?php echo $religion ?></option>
-									<option value="Roman Catholic">Roman Catholic</option>
-									<option value="INC">INC</option>
-									<option value="Christian">Christian</option>
-									<option value="Islam">Islam</option>
-									<option value="Buddhism">Buddhism</option>
-									<option value="Protestant">Protestant</option>
-									<option value="Methodist">Methodist</option>
-									<option value="Adventist">Adventist</option>
-									<option value="independent">independent</option>
-									<option value="Evangelical">Evangelical</option>
-									<option value="Jehovah's-Witnesses">Jehovah's-Witnesses</option>
-									<option value="JIL">JIL</option>
-									<option value="Lutheran">Lutheran</option>
-									<option value="Orthodox">Orthodox</option>
-									<option value="Pentecostal">Pentecostal</option>
-									<option value="Presbyterianism">Presbyterianism</option>
-									<option value="Latter-Day">Latter-Day</option>
-									<option value="UCCP">UCCP</option>
-									<option value="KJC">KJC</option>
-									<option value="Baptist">Baptist</option>
-									<option value="Angelican-Episcopalian">Angelican-Episcopalian</option>
-									<option value="Others">Others</option>
-									</select>
-									<div class="invalid-feedback">
-										Please select a valid Religion.
-									</div>
-								</div>
-
-								<div class="col-md-6" >
-									<label for="phone_number" class="form-label">Phone Number</label>
-									<div class="input-group flex-nowrap">
-									<span class="input-group-text" id="addon-wrapping">+63</span>
-									<input type="text" class="form-control numbers" value="<?php echo $phone_number ?>"  autocapitalize="off" inputmode="numeric" autocomplete="off" name="PNumber" id="phone_number" minlength="10" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  placeholder="10-digit number">
-									</div>
-								</div>
 								
 								<div class="col-md-6">
 									<label for="email" class="form-label">Email</label>
@@ -304,61 +191,6 @@ $updated_at                 = $student["updated_at"];
 									Please provide a valid Email.
 									</div>
 								</div>
-								<!-- Residential Address -->
-								<label class="form-label" style="text-align: left; padding-top: 2rem; padding-bottom: 2rem; font-size: 1rem; font-weight: bold;">Residential Address</label>
-								
-								<div class="col-md-6">
-									<label for="province" class="form-label">Province<span> *</span></label>
-									<input type="text" class="form-control" value="<?php echo $province ?>" autocapitalize="on"  autocomplete="off" name="Province" id="province" required>
-									<div class="invalid-feedback">
-										Please select a valid Province.
-									</div>
-								</div>
-
-								<div class="col-md-6">
-									<label for="city" class="form-label">City/Municipality<span> *</span></label>
-									<input type="text" class="form-control" value="<?php echo $city ?>" autocapitalize="on"  autocomplete="off" name="City" id="city" required>
-									<div class="invalid-feedback">
-										Please select a valid City.
-									</div>
-								</div>
-
-								<div class="col-md-6">
-									<label for="barangay" class="form-label">Barangay<span> *</span></label>
-									<input type="text" class="form-control" value="<?php echo $barangay ?>" autocapitalize="on"  autocomplete="off" name="Barangay" id="barangay" required>
-									<div class="invalid-feedback">
-										Please select a valid Barangay.
-									</div>
-								</div>
-
-								<!-- Emergency Information -->
-								<label class="form-label" style="text-align: left; padding-top: 2rem; padding-bottom: 2rem; font-size: 1rem; font-weight: bold;">Emergency Information</label>
-
-								<div class="col-md-6">
-									<label for="ECP" class="form-label">Emergency Contact Person</label>
-									<input type="text" class="form-control" value="<?php echo $emergency_contact_person ?>" autocapitalize="on"  autocomplete="off" name="Emergency_Contact_Person" id="ECP" >
-									<div class="invalid-feedback">
-									Please provide a Emergency Contact Person.
-									</div>
-								</div>
-
-								<div class="col-md-6">
-									<label for="EAddress" class="form-label">Emergency Address</label>
-									<input type="text" class="form-control" value="<?php echo $emergency_address ?>" autocapitalize="on"  autocomplete="off" name="Emergency_Address" id="EAddress" >
-									<div class="invalid-feedback">
-									Please provide a Emergency Address.
-									</div>
-								</div>
-
-								<div class="col-md-6">
-									<label for="EMN" class="form-label">Emergency Mobile No.</label>
-									<div class="input-group flex-nowrap">
-									<span class="input-group-text" id="addon-wrapping">+63</span>
-									<input type="text" class="form-control numbers" value="<?php echo $emergency_mobile_number ?>"  autocapitalize="off" inputmode="numeric" autocomplete="off" name="Emergency_Mobile_No" id="EMN" minlength="10" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  placeholder="10-digit number">
-									</div>
-								</div>
-								
-
 
 							</div>
 

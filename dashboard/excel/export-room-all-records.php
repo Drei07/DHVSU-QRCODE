@@ -10,14 +10,13 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 $inputFileName = 'student-attendance.xlsx';
 $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($inputFileName);
 
-$roomId = $_GET["Id"];
 $starting_row = 9;
 $month = $_GET['date'];
 
 
-$pdoQuery = "SELECT * FROM student_activity WHERE activity = :activity AND MONTH(date) = :date";
+$pdoQuery = "SELECT * FROM student_activity WHERE MONTH(date) = :date";
 $pdoResult = $pdoConnect->prepare($pdoQuery);
-$pdoExec = $pdoResult->execute(array(":activity" => $roomId, ":date" => $month));
+$pdoExec = $pdoResult->execute(array(":date" => $month));
 
 if ($pdoResult->rowCount() == 1) {
 
@@ -47,19 +46,6 @@ if ($pdoResult->rowCount() == 1) {
 
         $starting_row++;
     }
-
-
-    $pdoQuery = "SELECT * FROM location WHERE Id = :Id";
-    $pdoResult1 = $pdoConnect->prepare($pdoQuery);
-    $pdoExec1 = $pdoResult1->execute(array(":Id" => $roomId));
-    $location = $pdoResult1->fetch(PDO::FETCH_ASSOC);
-
-
-    $location_name = $location["location_name"] . " - STUDENTS RECORDS";
-
-
-    $sheet = $spreadsheet->getSheetByName('front')
-        ->setCellValue('J3', $location_name);
 
     // MONTHS
     switch ($month) {
@@ -107,7 +93,7 @@ if ($pdoResult->rowCount() == 1) {
 
     ob_end_clean();
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    header('Content-Disposition: attachment;filename="'.$month_name.'-' . $location["location_name"] . '-student-attendance-' . date("Y-m-d") . '.xlsx"');
+    header('Content-Disposition: attachment;filename="'.$month_name.'-student-attendance-' . date("Y-m-d") . '.xlsx"');
 
     $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
     $writer->save('php://output');
@@ -116,5 +102,5 @@ if ($pdoResult->rowCount() == 1) {
     $_SESSION['status'] = "No records found for this month";
     $_SESSION['status_code'] = "error";
     $_SESSION['status_timer'] = 100000;
-    header("Location: ../superadmin/room-records?Id=$roomId");
+    header("Location: ../superadmin/room-list");
 }

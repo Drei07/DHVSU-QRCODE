@@ -695,6 +695,22 @@ main .data-table .table .page-item.active .page-link{
     border-color: var(--dark-blue);
 
 }
+
+.data-table .btn-month {
+	display: block;
+	width: 100%;
+	padding: 1rem;
+	background-color: var(--blue);
+	border-radius: 10px;
+	border: none;
+	margin: 1rem;
+}
+
+.data-table .btn-month a {
+	color: var(--light);
+	font-weight: 600;
+	font-size: 20px;
+}
 /* END OF TABLES */
 
 /* START OF FORMS */

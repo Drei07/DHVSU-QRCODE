@@ -33,34 +33,20 @@ class USER
   return $stmt;
  }
  
- public function register($studentId,$first_name,$middle_name,$last_name,$sex,$birth_date,$age,$place_of_birth,$civil_status,$nationality,$religion,$phone_number,$email,$upass,$province,$city,$barangay,$emergency_contact_person, $emergency_mobile_number,$emergency_address,$qrcode,$tokencode)
+ public function register($studentId,$first_name,$middle_name,$last_name,$email,$upass,$qrcode,$tokencode)
  {
   try
   {       
    $password = md5($upass);
-   $stmt = $this->conn->prepare("INSERT INTO student(studentId, first_name, middle_name, last_name, sex, birth_date, age, place_of_birth, civil_status, nationality, religion, phone_number, email, password, province, city, barangay, emergency_contact_person, emergency_address, emergency_mobile_number, qrcode, tokencode) 
-                                        VALUES(:studentId, :first_name, :middle_name, :last_name, :sex, :birth_date, :age, :place_of_birth, :civil_status, :nationality, :religion, :phone_number, :email, :password, :province, :city, :barangay, :emergency_contact_person, :emergency_address, :emergency_mobile_number, :qrcode, :tokencode)");
+   $stmt = $this->conn->prepare("INSERT INTO student(studentId, first_name, middle_name, last_name,email, password, qrcode, tokencode) 
+                                        VALUES(:studentId, :first_name, :middle_name, :last_name,:email, :password, :qrcode, :tokencode)");
    
    $stmt->bindparam(":studentId",$studentId);
    $stmt->bindparam(":first_name",$first_name);
    $stmt->bindparam(":middle_name",$middle_name);
    $stmt->bindparam(":last_name",$last_name);
-   $stmt->bindparam(":sex",$sex);
-   $stmt->bindparam(":birth_date",$birth_date);
-   $stmt->bindparam(":age",$age);
-   $stmt->bindparam(":place_of_birth",$place_of_birth);
-   $stmt->bindparam(":civil_status",$civil_status);
-   $stmt->bindparam(":nationality",$nationality);
-   $stmt->bindparam(":religion",$religion);
-   $stmt->bindparam(":phone_number",$phone_number);
    $stmt->bindparam(":email",$email);
    $stmt->bindparam(":password",$password);
-   $stmt->bindparam(":province",$province);
-   $stmt->bindparam(":city",$city);
-   $stmt->bindparam(":barangay",$barangay);
-   $stmt->bindparam(":emergency_contact_person",$emergency_contact_person);
-   $stmt->bindparam(":emergency_address",$emergency_address);
-   $stmt->bindparam(":emergency_mobile_number",$emergency_mobile_number);
    $stmt->bindparam(":qrcode",$qrcode);
    $stmt->bindparam(":tokencode",$tokencode);
 

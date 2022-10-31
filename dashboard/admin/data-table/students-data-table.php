@@ -62,7 +62,6 @@ $output = '
     <thead>
     <th>STUDENT ID</th>
     <th>NAME</th>
-    <th>PHONE-NUMBER</th>
     <th>EMAIL</th>
     <th>ROOM ENTERED</th>
     <th>DATE</th>
@@ -81,7 +80,6 @@ $output = '
     <tr>
       <td>'.$row["studentId"].'</td>
       <td>'.$row["last_name"].',&nbsp;&nbsp;'.$row["first_name"].'&nbsp;&nbsp;&nbsp;'.$row["middle_name"].'</td>
-      <td>+63'.$row["phone_number"].'</td>
       <td>'.$row["email"].'</td>
       <td>'.$location_name["location_name"].'</td>
       <td>'.$row["created_at"].'</td>

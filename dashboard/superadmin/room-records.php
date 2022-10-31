@@ -118,7 +118,7 @@ $room_name = $location["location_name"];
 				<li><a href="" class="active">Room Records</a></li>
 			</ul>
 			<div class="level">
-                <button type="button"><a href="../excel/export-room-records.php?Id=<?php echo $roomId ?>" class="export"><i class='bx bx-export'></i> Export</a></button>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#classModal"><i class='bx bx-export'></i> Export</button>
             </div>
 
             <section class="data-table">
@@ -134,6 +134,38 @@ $room_name = $location["location_name"];
 		</main>
 		<!-- MAIN -->
 	</section>
+
+				<!-- MODALS -->
+		<div class="class-modal">
+			<div class="modal fade" id="classModal" tabindex="-1" aria-labelledby="classModalLabel" aria-hidden="true" data-bs-backdrop="static">
+				<div class="modal-dialog modal-dialog-centered modal-lg">
+					<div class="modal-content" style="height: 700px;">
+					<div class="header"></div>
+						<div class="modal-header">
+							<h5 class="modal-title" id="classModalLabel">Please Select Month</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+						<section class="data-table">
+							<button type="button" class="btn-month" ><a href="../excel/export-room-records.php?Id=<?php echo $roomId ?>&date=01" class="export">January</a></button>
+							<button type="button" class="btn-month" ><a href="../excel/export-room-records.php?Id=<?php echo $roomId ?>&date=02" class="export">February</a></button>
+							<button type="button" class="btn-month" ><a href="../excel/export-room-records.php?Id=<?php echo $roomId ?>&date=03" class="export">March</a></button>
+							<button type="button" class="btn-month" ><a href="../excel/export-room-records.php?Id=<?php echo $roomId ?>&date=04" class="export">April</a></button>
+							<button type="button" class="btn-month" ><a href="../excel/export-room-records.php?Id=<?php echo $roomId ?>&date=05" class="export">May</a></button>
+							<button type="button" class="btn-month" ><a href="../excel/export-room-records.php?Id=<?php echo $roomId ?>&date=06" class="export">June</a></button>
+							<button type="button" class="btn-month" ><a href="../excel/export-room-records.php?Id=<?php echo $roomId ?>&date=07" class="export">July</a></button>
+							<button type="button" class="btn-month" ><a href="../excel/export-room-records.php?Id=<?php echo $roomId ?>&date=08" class="export">August</a></button>
+							<button type="button" class="btn-month" ><a href="../excel/export-room-records.php?Id=<?php echo $roomId ?>&date=09" class="export">September</a></button>
+							<button type="button" class="btn-month" ><a href="../excel/export-room-records.php?Id=<?php echo $roomId ?>&date=10" class="export">October</a></button>
+							<button type="button" class="btn-month" ><a href="../excel/export-room-records.php?Id=<?php echo $roomId ?>&date=11" class="export">November</a></button>
+							<button type="button" class="btn-month" ><a href="../excel/export-room-records.php?Id=<?php echo $roomId ?>&date=12" class="export">December</a></button>
+						</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END MODALS -->
 	<!-- END NAVBAR -->
 
 	<script src="../../src/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -153,7 +185,7 @@ $room_name = $location["location_name"];
 
 				swal({
 				title: "Export?",
-				text: "Export an excel file?",
+				text: "Do you want export an excel file from this month?",
 				icon: "info",
 				buttons: true,
 				dangerMode: true,
