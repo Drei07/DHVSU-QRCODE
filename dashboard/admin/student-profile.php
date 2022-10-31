@@ -150,8 +150,8 @@ $updated_at                 = $student["updated_at"];
                         <p><?php echo $studentId ?></p>
                         <h7>Student</h7>
 
-						<button class="btn btn-danger change" onclick="information()">Student Information</button>
-						<button disabled class="btn btn-danger change" onclick="overview()">Overview</button>
+						<button class="btn btn-primary change" onclick="information()">Student Information</button>
+						<button disabled class="btn btn-primary change" onclick="overview()">Overview</button>
 
 					</div>
 

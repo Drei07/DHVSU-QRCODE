@@ -131,7 +131,7 @@ $location_name     = $location["location_name"];
 						</div>
 
 						<div class="addBtn">
-							<button type="submit" class="btn-danger" name="btn-register" id="btn-register" onclick="return IsEmpty(); sexEmpty();">Update</button>
+							<button type="submit" class="btn-primary" name="btn-register" id="btn-register" onclick="return IsEmpty(); sexEmpty();">Update</button>
 						</div>
 					</form>
                 </div>

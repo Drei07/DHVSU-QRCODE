@@ -107,7 +107,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 				<li><a href="" class="active">List of Rooms</a></li>
 			</ul>
 			<div class="manage">
-				<button class="btn-danger" onclick="location.href='manage-room'"><i class='bx bx-edit'></i> Manage</button>
+				<button class="btn-primary" onclick="location.href='manage-room'"><i class='bx bx-edit'></i> Manage</button>
 			</div>
             <section class="data-form">
 				<div class="header"></div>

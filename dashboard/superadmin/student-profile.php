@@ -153,9 +153,9 @@ $updated_at                 = $student["updated_at"];
                         <p><?php echo $studentId ?></p>
                         <h7>Student</h7>
 
-						<button class="btn btn-danger change" onclick="information()">Student Information</button>
-						<button disabled class="btn btn-danger change" onclick="overview()">Overview</button>
-						<button class="btn btn-danger change" onclick="qr()">QR Code</button>
+						<button class="btn btn-primary change" onclick="information()">Student Information</button>
+						<button disabled class="btn btn-primary change" onclick="overview()">Overview</button>
+						<button class="btn btn-primary change" onclick="qr()">QR Code</button>
 
 					</div>
 
@@ -364,7 +364,7 @@ $updated_at                 = $student["updated_at"];
 
 							<div class="addBtn">
 								<button type="button" onclick="location.href='enrolled-students-data'" class="back">Back</button>
-								<button type="submit" class="btn-danger" name="btn-register" id="btn-register" onclick="return IsEmpty(); sexEmpty();">Submit</button>
+								<button type="submit" class="btn-primary" name="btn-register" id="btn-register" onclick="return IsEmpty(); sexEmpty();">Submit</button>
 							</div>
 						</form>
 					</div>

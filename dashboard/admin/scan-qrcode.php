@@ -282,7 +282,7 @@ if(isset($_POST['scan'])){
 			</ul>
 
 			<div class="level">
-					<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#classModal" style="background-color: <?php echo $advisory_color ?>;"><i class='bx bx-current-location'></i> Select Location</button>
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#classModal" style="background-color: <?php echo $advisory_color ?>;"><i class='bx bx-current-location'></i> Select Location</button>
             </div>
 
 			<!-- PROFILE CONFIGURATION -->

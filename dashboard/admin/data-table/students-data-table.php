@@ -85,7 +85,7 @@ $output = '
       <td>'.$row["email"].'</td>
       <td>'.$location_name["location_name"].'</td>
       <td>'.$row["created_at"].'</td>
-      <td><button type="button" class="btn btn-danger V"> <a href="student-profile?id='.$row["userId"].'" class="view">View</a></button></td>
+      <td><button type="button" class="btn btn-primary V"> <a href="student-profile?id='.$row["userId"].'" class="view">View</a></button></td>
     </tr>
     ';
   }

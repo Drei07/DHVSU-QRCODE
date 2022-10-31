@@ -115,9 +115,9 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 						<img src="../../src/img/<?php echo $profile ?>" alt="logo">
 
 						<a href="controller/delete-profile-controller.php" class="delete"><i class='bx bxs-trash'></i></a>
-						<button class="btn btn-danger change" onclick="edit()"><i class='bx bxs-edit'></i> Edit Profile</button>
-						<button class="btn btn-danger change" onclick="avatar()"><i class='bx bxs-user'></i> Change Avatar</button>
-						<button class="btn btn-danger change" onclick="password()"><i class='bx bxs-key'></i> Change Password</button>
+						<button class="btn btn-primary change" onclick="edit()"><i class='bx bxs-edit'></i> Edit Profile</button>
+						<button class="btn btn-primary change" onclick="avatar()"><i class='bx bxs-user'></i> Change Avatar</button>
+						<button class="btn btn-primary change" onclick="password()"><i class='bx bxs-key'></i> Change Password</button>
 
 					</div>
 					

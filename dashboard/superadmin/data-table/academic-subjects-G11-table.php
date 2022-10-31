@@ -79,7 +79,7 @@ $output = '
       <td>'.$row["year_level"].'</td>
       <td>'.$row["subject_name"].'</td>
       <td>'.$row["subject_code"].'</td>
-      <td><button type="button" class="btn btn-danger V"> <a href="" class="view">View</a></button></td>
+      <td><button type="button" class="btn btn-primary V"> <a href="" class="view">View</a></button></td>
     </tr>
     ';
   }

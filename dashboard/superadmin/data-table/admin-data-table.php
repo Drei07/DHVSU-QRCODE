@@ -86,7 +86,7 @@ $output = '
       <td>'.$row["adminEmail"].'</td>
       <td>'. ($row['adminStatus']=="N" ? '<p class="btn-warning N">Pending</p>' :  '<p class="btn-success Y">Active</p>') . '</td>
       <td>'.$row["created_at"].'</td>
-      <td><button type="button" class="btn btn-danger V"> <a href="admin-profile?id='.$row["employeeId"].'" class="view">View</a></button></td>
+      <td><button type="button" class="btn btn-primary V"> <a href="admin-profile?id='.$row["employeeId"].'" class="view">View</a></button></td>
 
     </tr>
     ';

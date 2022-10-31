@@ -117,9 +117,9 @@ $updated_at  				= $admin_profile["updated_at"];
 						<img src="../../src/img/<?php echo $profile_admin ?>" alt="logo">
 
 						<a href="controller/delete-profile-controller.php?id=<?php echo $UId ?>" class="delete"><i class='bx bxs-trash'></i></a>
-						<button class="btn-danger change" onclick="edit()"><i class='bx bxs-edit'></i> Edit Profile</button>
-						<button class="btn-danger change" onclick="avatar()"><i class='bx bxs-user'></i> Change Avatar</button>
-						<button class="btn-danger change" onclick="password()"><i class='bx bxs-key'></i> Change Password</button>
+						<button class="btn-primary change" onclick="edit()"><i class='bx bxs-edit'></i> Edit Profile</button>
+						<button class="btn-primary change" onclick="avatar()"><i class='bx bxs-user'></i> Change Avatar</button>
+						<button class="btn-primary change" onclick="password()"><i class='bx bxs-key'></i> Change Password</button>
 
 					</div>
 					

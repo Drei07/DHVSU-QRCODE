@@ -88,7 +88,7 @@ $output = '
       <td>+63'.$row["phone_number"].'</td>
       <td>'.$row["email"].'</td>
       <td>'.$row["created_at"].'</td>
-      <td><button type="button" class="btn btn-danger V"> <a href="student-information?Id='.$row["studentId"].'&roomId='.$roomId.'" class="view">View</a></button></td>
+      <td><button type="button" class="btn btn-primary V"> <a href="student-information?Id='.$row["studentId"].'&roomId='.$roomId.'" class="view">View</a></button></td>
     </tr>
     ';
   }

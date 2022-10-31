@@ -308,7 +308,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 						</div>
 
 						<div class="addBtn">
-							<button type="submit" class="btn-danger" name="btn-register" id="btn-register" onclick="return IsEmpty(); sexEmpty();">Submit</button>
+							<button type="submit" class="btn-primary" name="btn-register" id="btn-register" onclick="return IsEmpty(); sexEmpty();">Submit</button>
 						</div>
 					</form>
                 </div>
