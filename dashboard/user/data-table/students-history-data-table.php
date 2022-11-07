@@ -1,31 +1,30 @@
 <table class="table table-bordered ">
 <?php
 
-
-require_once '../authentication/superadmin-class.php';
+require_once '../authentication/user-class.php';
 include_once '../../../database/dbconfig2.php';
 
-$superadmin_home = new SUPERADMIN();
+$user_home = new USER();
 
-if(!$superadmin_home->is_logged_in())
-{
- $superadmin_home->redirect('../../');
+if (!$user_home->is_logged_in()) {
+	$user_home->redirect('../../');
 }
 
+$stmt = $user_home->runQuery("SELECT * FROM student WHERE userId=:uid");
+$stmt->execute(array(":uid" => $_SESSION['userSession']));
+$user_profile = $stmt->fetch(PDO::FETCH_ASSOC);
 
+$studentId                 = $user_profile["studentId"];
 
-$roomId = $_GET['roomId'];
-
-$pdoQuery = "SELECT * FROM location WHERE Id = :Id LIMIT 1";
-$pdoResult = $pdoConnect->prepare($pdoQuery);
-$pdoExec = $pdoResult->execute(array(":Id" => $roomId));
-$location = $pdoResult->fetch(PDO::FETCH_ASSOC);
-
-$room_name = $location["location_name"];
 
 function get_total_row($pdoConnect)
 {
-
+  $query = "
+  SELECT * FROM student_activity
+  ";
+  $statement = $pdoConnect->prepare($query);
+  $statement->execute();
+  return $statement->rowCount();
 }
 
 $total_record = get_total_row($pdoConnect);
@@ -42,13 +41,13 @@ else
 }
 
 $query = "
-SELECT * FROM student_activity WHERE activity = :roomId
+SELECT * FROM student_activity WHERE studentId = :studentId
 ";
 $output = '';
 if($_POST['query'] != '')
 {
   $query .= '
-  AND studentId LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
+  WHERE studentId LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
   ';
 }
 
@@ -57,11 +56,11 @@ $query .= 'ORDER BY userId DESC ';
 $filter_query = $query . 'LIMIT '.$start.', '.$limit.'';
 
 $statement = $pdoConnect->prepare($query);
-$statement->execute(array(":roomId" => $roomId));
+$statement->execute(array(":studentId" => $studentId   ));
 $total_data = $statement->rowCount();
 
 $statement = $pdoConnect->prepare($filter_query);
-$statement->execute(array(":roomId" => $roomId));
+$statement->execute(array(":studentId" => $studentId   ));
 $total_filter_data = $statement->rowCount();
 
 if($total_data > 0)
@@ -69,24 +68,27 @@ if($total_data > 0)
 $output = '
 
     <thead>
-    <th>EMPLOYEE</th>
     <th>STUDENT ID</th>
     <th>NAME</th>
     <th>EMAIL</th>
+    <th>ROOM ENTERED</th>
     <th>DATE</th>
-    <th>ACTION</th>
     </thead>
 ';
   while($row=$statement->fetch(PDO::FETCH_ASSOC))
   {
+    $activityId = $row["activity"];
+    $pdoQuery = "SELECT * FROM location WHERE Id = :Id";
+    $pdoResult = $pdoConnect->prepare($pdoQuery);
+    $pdoExec = $pdoResult->execute(array(":Id" => $activityId));
+    $location_name = $pdoResult->fetch(PDO::FETCH_ASSOC);
     $output .= '
     <tr>
-      <td>'.$row["employee_name"].'</td>
       <td>'.$row["studentId"].'</td>
       <td>'.$row["last_name"].',&nbsp;&nbsp;'.$row["first_name"].'&nbsp;&nbsp;&nbsp;'.$row["middle_name"].'</td>
       <td>'.$row["email"].'</td>
+      <td>'.$location_name["location_name"].'</td>
       <td>'.$row["created_at"].'</td>
-      <td><button type="button" class="btn btn-primary V"> <a href="student-information?Id='.$row["studentId"].'&roomId='.$roomId.'" class="view">View</a></button></td>
     </tr>
     ';
   }

@@ -141,7 +141,6 @@ $updated_at                 = $student["updated_at"];
                         <h7>Student</h7>
 
 						<button class="btn btn-primary change" onclick="information()">Student Information</button>
-						<button disabled class="btn btn-primary change" onclick="overview()">Overview</button>
 						<button class="btn btn-primary change" onclick="qr()">QR Code</button>
 
 					</div>
@@ -197,44 +196,6 @@ $updated_at                 = $student["updated_at"];
 							<div class="addBtn">
 								<button type="button" onclick="location.href='enrolled-students-data'" class="back">Back</button>
 								<button type="submit" class="btn-primary" name="btn-register" id="btn-register" onclick="return IsEmpty(); sexEmpty();">Submit</button>
-							</div>
-						</form>
-					</div>
-
-					<!-- Overview -->
-					<div id="overview" style="display: none;">
-						<form action="controller/update-student-data-controller.php?id=<?php echo $student_Id ?>" method="POST" class="row gx-5 needs-validation" name="form" onsubmit="return validate()"  novalidate style="overflow: hidden;">
-							<div class="row gx-5 needs-validation">
-								<label class="form-label" style="text-align: left; padding-top: .5rem; padding-bottom: 1rem; font-size: 1rem; font-weight: bold;"><i class='bx bxs-edit'></i> Overview<p>Last update: <?php  echo $updated_at  ?></p></label>
-								
-								<section class="data-table">
-									<div class="searchBx">
-										<input type="input" placeholder="search activity" class="search" name="search_box" id="search_box"><button class="searchBtn"><i class="bx bx-search icon"></i></button>
-									</div>
-
-									<div class="table">
-									<div id="dynamic_content">
-									</div>
-
-								</section>
-													
-								<div class="col-md-6" style="opacity: 0;">
-										<label for="student_id" class="form-label">Student ID<span> *</span></label>
-										<input type="text" class="form-control" value="<?php echo $studentId ?>" autocapitalize="on" maxlength="15" autocomplete="off" name="StudentId" id="student_id" required >
-										<div class="invalid-feedback">
-										Please provide a Student ID.
-										</div>
-								</div>
-
-								<div class="col-md-6" style="opacity: 0;">
-										<label for="student_id" class="form-label">Student ID<span> *</span></label>
-										<input type="text" class="form-control" value="<?php echo $studentId ?>" autocapitalize="on" maxlength="15" autocomplete="off" name="StudentId" id="student_id" required >
-										<div class="invalid-feedback">
-										Please provide a Student ID.
-										</div>
-								</div>
-
-
 							</div>
 						</form>
 					</div>
@@ -341,26 +302,17 @@ $updated_at                 = $student["updated_at"];
 		// Buttons Students Profile
 
 		window.onpageshow = function() {
-		document.getElementById('overview').style.display = 'none';
 		document.getElementById('qr').style.display = 'none';
 		};
 
 		function information(){
 			document.getElementById('information').style.display = 'block';
-			document.getElementById('overview').style.display = 'none';
-			document.getElementById('qr').style.display = 'none';
-		}
-
-		function overview(){
-			document.getElementById('overview').style.display = 'block';
-			document.getElementById('information').style.display = 'none';
 			document.getElementById('qr').style.display = 'none';
 		}
 
 		function qr(){
 			document.getElementById('qr').style.display = 'block';
 			document.getElementById('information').style.display = 'none';
-			document.getElementById('overview').style.display = 'none';
 		}
 
         // Country Selector
@@ -445,78 +397,6 @@ $updated_at                 = $student["updated_at"];
 		}
 		});
 
-        //birthdate
-        function formatDate(date){
-            var d = new Date(date),
-            month = '' + (d.getMonth() + 1),
-            day = '' + d.getDate(),
-            year = d.getFullYear();
-
-            if (month.length < 2) month = '0' + month;
-            if (day.length < 2) day = '0' + day;
-
-            return [year, month, day].join('-');
-
-        }
-
-        function getAge(dateString){
-            var birthdate = new Date().getTime();
-            if (typeof dateString === 'undefined' || dateString === null || (String(dateString) === 'NaN')){
-            birthdate = new Date().getTime();
-            }
-            birthdate = new Date(dateString).getTime();
-            var now = new Date().getTime();
-            var n = (now - birthdate)/1000;
-            if (n < 604800){
-            var day_n = Math.floor(n/86400);
-            if (typeof day_n === 'undefined' || day_n === null || (String(day_n) === 'NaN')){
-                return '';
-            }else{
-                return day_n + '' + (day_n > 1 ? '' : '') + '';
-            }
-            } else if (n < 2629743){
-            var week_n = Math.floor(n/604800);
-            if (typeof week_n === 'undefined' || week_n === null || (String(week_n) === 'NaN')){
-                return '';
-            }else{
-                return week_n + '' + (week_n > 1 ? '' : '') + '';
-            }
-            } else if (n < 31562417){
-            var month_n = Math.floor(n/2629743);
-            if (typeof month_n === 'undefined' || month_n === null || (String(month_n) === 'NaN')){
-                return '';
-            }else{
-                return month_n + ' ' + (month_n > 1 ? '' : '') + '';
-            }
-            }else{
-            var year_n = Math.floor(n/31556926);
-            if (typeof year_n === 'undefined' || year_n === null || (String(year_n) === 'NaN')){
-                return year_n = '';
-            }else{
-                return year_n + '' + (year_n > 1 ? '' : '') + '';
-            }
-            }
-        }
-        function getAgeVal(pid){
-            var birthdate = formatDate(document.getElementById("birthdate").value);
-            var count = document.getElementById("birthdate").value.length;
-            if (count=='10'){
-            var age = getAge(birthdate);
-            var str = age;
-            var res = str.substring(0, 1);
-            if (res =='-' || res =='0'){
-                document.getElementById("birthdate").value = "";
-                document.getElementById("age").value = "";
-                $('#birthdate').focus();
-                return false;
-            }else{
-                document.getElementById("age").value = age;
-            }
-            }else{
-            document.getElementById("age").value = "";
-            return false;
-            }
-        };
 
 	</script>
 
