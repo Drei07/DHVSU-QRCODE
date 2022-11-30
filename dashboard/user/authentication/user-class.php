@@ -138,9 +138,8 @@ class USER
  
  public function logout()
  {
+  unset($_SESSION['userSession']);
 
-  session_destroy();
-  $_SESSION['userSession'] = false;
  }
  
  function send_mail($email,$message,$subject,$smtp_email,$smtp_password,$system_name)
