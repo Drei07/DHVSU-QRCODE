@@ -36,7 +36,7 @@ include_once '../../dashboard/superadmin/controller/select-settings-coniguration
 								</div>
 
 								<div class="form-group m-0">
-									<button type="submit" name="btn-forgot-password" class="btn btn-danger btn-block">
+									<button type="submit" name="btn-forgot-password" class="btn btn-primary btn-block">
 										Reset Password
 									</button>
 								</div>
